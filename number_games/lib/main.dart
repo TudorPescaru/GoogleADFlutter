@@ -346,11 +346,13 @@ class _PerfectNumState extends State<PerfectNum> {
   final FocusNode _focusNode = FocusNode();
   final TextEditingController _myController = TextEditingController();
 
+  // Clear TextField text
   void _clearText() {
     _myController.clear();
     _focusNode.requestFocus();
   }
 
+  // Check type of given number
   void _checkNumber() {
     if (_myController.text.isEmpty) {
       return;
@@ -365,12 +367,14 @@ class _PerfectNumState extends State<PerfectNum> {
     }
   }
 
+  // Check if number is square
   bool _isSquare(int number) {
     int sr = sqrt(number).round();
     return sr * sr == number;
   }
 
-  bool _isTriangle(int number) {
+  // Check if number is triangular
+  bool _isTriangular(int number) {
     for (int i = 0; pow(i, 3) <= number; i++) {
       if (pow(i, 3) == number) {
         return true;
@@ -379,6 +383,7 @@ class _PerfectNumState extends State<PerfectNum> {
     return false;
   }
 
+  // Build popup with number type
   Widget _buildPopupDialog(BuildContext context, int input) {
     return new AlertDialog(
       title: Text(
@@ -388,9 +393,9 @@ class _PerfectNumState extends State<PerfectNum> {
         ),
       ),
       content: Text(
-        !_isSquare(input) && !_isTriangle(input)
+        !_isSquare(input) && !_isTriangular(input)
         ? 'Number $input is neither TRIANGULAR nor SQUARE.'
-        : _isSquare(input) && _isTriangle(input)
+        : _isSquare(input) && _isTriangular(input)
         ? 'Number $input is both SQUARE and TRIANGULAR.'
         : _isSquare(input)
         ? 'Number $input is SQUARE.'
