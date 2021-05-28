@@ -42,18 +42,20 @@ class _GamePageState extends State<GamePage> {
 
   // Color box based on who ticked it
   Color _getBoxColor(int index) {
-    return _gameState[index ~/ 3][index % 3] == 0 ? Colors.white :
-      _gameState[index ~/ 3][index % 3] == 1 ? Colors.green : Colors.red;
+    return _gameState[index ~/ 3][index % 3] == 0
+        ? Colors.white
+        : _gameState[index ~/ 3][index % 3] == 1
+            ? Colors.green
+            : Colors.red;
   }
 
   // Create border for box
   Border _getBoxBorder(int index) {
     return Border(
-      top: index ~/ 3 == 0 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber),
-      left: index % 3 == 0 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber),
-      right: index % 3 == 2 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber),
-      bottom: index ~/ 3 == 2 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber)
-    );
+        top: index ~/ 3 == 0 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber),
+        left: index % 3 == 0 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber),
+        right: index % 3 == 2 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber),
+        bottom: index ~/ 3 == 2 ? BorderSide.none : const BorderSide(width: 5.0, color: Colors.amber));
   }
 
   // Determine if game was won
@@ -112,10 +114,7 @@ class _GamePageState extends State<GamePage> {
       if (_winCondition()) {
         // Reset and display win message
         _resetGame();
-        showDialog<Widget>(
-            context: context,
-            builder: _buildPopupDialog
-        );
+        showDialog<Widget>(context: context, builder: _buildPopupDialog);
       } else {
         // Change player to move
         _turn = -_turn;
@@ -146,9 +145,7 @@ class _GamePageState extends State<GamePage> {
       appBar: AppBar(
         backgroundColor: Colors.amber,
         title: const Center(
-          child: Text(
-            'TicTacToe'
-          ),
+          child: Text('TicTacToe'),
         ),
       ),
       body: Column(
@@ -173,18 +170,13 @@ class _GamePageState extends State<GamePage> {
                   return AnimatedContainer(
                     width: 50.0,
                     height: 50.0,
-                    duration: const Duration(
-                      milliseconds: 300
-                    ),
-                    decoration: BoxDecoration(
-                      color: _getBoxColor(index),
-                      border: _getBoxBorder(index)
-                    ),
+                    duration: const Duration(milliseconds: 300),
+                    decoration: BoxDecoration(color: _getBoxColor(index), border: _getBoxBorder(index)),
                     child: InkWell(
                       onTap: () => _tickBox(index),
                     ),
                   );
-                }, growable: false),
+                }),
               ),
             ),
           )
@@ -193,4 +185,3 @@ class _GamePageState extends State<GamePage> {
     );
   }
 }
-
