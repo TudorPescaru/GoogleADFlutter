@@ -15,8 +15,8 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
   int _selectedIndex;
   String _displayCurrency;
   String _validInput;
-  static const double eur2ron = 4.9253;
-  static const double usd2ron = 4.0683;
+  static const double eur2ron = 4.9253; // 15th of May 2021
+  static const double usd2ron = 4.0683; // 15th of May 2021
   final FocusNode _focusNode = FocusNode();
   final TextEditingController _myController = TextEditingController();
 
