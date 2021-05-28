@@ -15,11 +15,11 @@ jobs:
               with:
                   channel: stable
             - name: "Setup Project"
+              working-directory: ./number_games
               run: flutter pub get
-                working-directory: 'number_games/'
             - name: "Check Format"
+              working-directory: ./number_games
               run: flutter format -l 120 --set-exit-if-changed .
-                working-directory: 'number_games/'
     analyze-code:
         runs-on: ubuntu-latest
         steps:
@@ -30,9 +30,9 @@ jobs:
               with:
                   channel: stable
             - name: "Setup Project"
+              working-directory: ./number_games
               run: flutter pub get
-                working-directory: 'number_games/'
             - name: "Analyze code"
+              working-directory: ./number_games
               run: flutter analyze
-                working-directory: 'number_games/'
 

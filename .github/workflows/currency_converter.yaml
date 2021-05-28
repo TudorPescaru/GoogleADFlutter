@@ -15,11 +15,11 @@ jobs:
               with:
                   channel: stable
             - name: "Setup Project"
+              working-directory: ./currency_converter
               run: flutter pub get
-                working-directory: 'currency_converter/'
             - name: "Check Format"
+              working-directory: ./currency_converter
               run: flutter format -l 120 --set-exit-if-changed .
-                working-directory: 'currency_converter/'
     analyze-code:
         runs-on: ubuntu-latest
         steps:
@@ -30,9 +30,9 @@ jobs:
               with:
                   channel: stable
             - name: "Setup Project"
+              working-directory: ./currency_converter
               run: flutter pub get
-                working-directory: 'currency_converter/'
             - name: "Analyze code"
+              working-directory: ./currency_converter
               run: flutter analyze
-                working-directory: 'currency_converter/'
 
