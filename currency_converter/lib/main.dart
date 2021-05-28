@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
-  runApp(CurrencyConverter());
+  runApp(const CurrencyConverter());
 }
 
 class CurrencyConverter extends StatefulWidget {
@@ -67,8 +66,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
         });
         return;
       }
-      double converted = _selectedIndex == 0 ? input * eur2ron : input *
-          usd2ron;
+      final double converted = _selectedIndex == 0 ? input * eur2ron : input * usd2ron;
       setState(() {
         _myController.text = converted.toStringAsFixed(2);
         _displayCurrency = 'RON';
@@ -91,7 +89,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black54,
-            title: Center(
+            title: const Center(
               child: Text(
                 'Currency Converter',
               ),
@@ -102,81 +100,60 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Image.asset(
-                      _displayFlag(),
-                      width: 100,
-                      height: 100,
-                    ),
-                    Icon(
-                      Icons.arrow_forward,
-                      size: 75,
-                      color: Colors.black54,
-                    ),
-                    Image.asset(
-                      'assets/ron.png',
-                      width: 100,
-                      height: 100,
-                    ),
-                  ]
-                ),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
+                  Image.asset(
+                    _displayFlag(),
+                    width: 100,
+                    height: 100,
+                  ),
+                  const Icon(
+                    Icons.arrow_forward,
+                    size: 75,
+                    color: Colors.black54,
+                  ),
+                  Image.asset(
+                    'assets/ron.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                ]),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 20.0),
+                  margin: const EdgeInsets.symmetric(vertical: 20.0),
                   width: 400,
                   child: TextField(
                     focusNode: _focusNode,
                     controller: _myController,
                     keyboardType: TextInputType.number,
                     onTap: _clearText,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(20.0),
-                      border: new OutlineInputBorder(
+                      contentPadding: const EdgeInsets.all(20.0),
+                      border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                          width: 2,
-                            style: BorderStyle.solid,
-                            color: Colors.black45
-                        ),
+                        borderSide: const BorderSide(width: 2, style: BorderStyle.solid, color: Colors.black45),
                       ),
                       fillColor: Colors.black26,
                       filled: true,
                       hintText: 'Enter amount...',
-                      hintStyle: TextStyle(
-                          fontSize: 20,
-                          fontStyle: FontStyle.italic
-                      ),
+                      hintStyle: const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                       suffixText: _displayCurrency,
                       errorText: _validInput,
-                      errorStyle: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold
-                      ),
-                      errorBorder: new OutlineInputBorder(
+                      errorStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                          width: 2,
-                          style: BorderStyle.solid,
-                          color: Colors.red
-                        ),
+                        borderSide: const BorderSide(width: 2, style: BorderStyle.solid, color: Colors.red),
                       ),
-                      focusedBorder: new OutlineInputBorder(
+                      focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                            width: 2,
-                            style: BorderStyle.solid,
-                            color: Colors.black45
-                        ),
+                        borderSide: const BorderSide(width: 2, style: BorderStyle.solid, color: Colors.black45),
                       ),
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.all(10.0),
                   width: 200,
                   height: 50,
                   decoration: BoxDecoration(
@@ -187,14 +164,10 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                     borderRadius: BorderRadius.circular(20),
                     onTap: _convert,
                     splashColor: Colors.amberAccent,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Convert',
-                        style: new TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber
-                        ),
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.amber),
                       ),
                     ),
                   ),
@@ -204,19 +177,9 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
           ),
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Colors.black54,
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                  icon: Icon(
-                      Icons.euro
-                  ),
-                  label: 'Euro'
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                      Icons.attach_money
-                  ),
-                  label: 'Dollar'
-              ),
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.euro), label: 'Euro'),
+              BottomNavigationBarItem(icon: Icon(Icons.attach_money), label: 'Dollar'),
             ],
             currentIndex: _selectedIndex,
             selectedItemColor: Colors.amber,
@@ -227,4 +190,3 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     );
   }
 }
-
