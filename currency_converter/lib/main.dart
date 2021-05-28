@@ -28,6 +28,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     _validInput = null;
   }
 
+  // Change currency to convert from
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -37,6 +38,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     _myController.clear();
   }
 
+  // Clear text in TextField
   void _clearText() {
     setState(() {
       _displayCurrency = _selectedIndex == 0 ? 'EUR' : 'USD';
@@ -46,6 +48,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     _focusNode.requestFocus();
   }
 
+  // Display flag based on selected currency
   String _displayFlag() {
     if (_selectedIndex == 0) {
       return 'assets/eur.png';
@@ -54,6 +57,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     }
   }
 
+  // Convert given sum from selected currency
   void _convert() {
     _focusNode.unfocus();
     double input;
