@@ -14,12 +14,12 @@ jobs:
               uses: subosito/flutter-action@v1
               with:
                   channel: stable
-            - name: "Change Directory"
-              run: cd number_games/
             - name: "Setup Project"
               run: flutter pub get
+                working-directory: 'number_games/'
             - name: "Check Format"
               run: flutter format -l 120 --set-exit-if-changed .
+                working-directory: 'number_games/'
     analyze-code:
         runs-on: ubuntu-latest
         steps:
@@ -29,10 +29,10 @@ jobs:
               uses: subosito/flutter-action@v1
               with:
                   channel: stable
-            - name: "Change Directory"
-              run: cd number_games/
             - name: "Setup Project"
               run: flutter pub get
+                working-directory: 'number_games/'
             - name: "Analyze code"
               run: flutter analyze
+                working-directory: 'number_games/'
 
