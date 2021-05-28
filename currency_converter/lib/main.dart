@@ -61,25 +61,31 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
   void _convert() {
     _focusNode.unfocus();
     double input;
+    // Check if input was given
     if (_myController.text.isNotEmpty && _displayCurrency.compareTo('RON') != 0) {
+      // Parse input
       try {
         input = double.parse(_myController.text);
       } catch (e) {
+        // Catch invalid input
         setState(() {
           _validInput = 'Invalid input!';
         });
         return;
       }
+      // Convert input
       final double converted = _selectedIndex == 0 ? input * eur2ron : input * usd2ron;
       setState(() {
         _myController.text = converted.toStringAsFixed(2);
         _displayCurrency = 'RON';
       });
     } else if (_myController.text.isNotEmpty) {
+      // Do not convert twice
       setState(() {
         _validInput = 'Already converted!';
       });
     } else {
+      // Check for empty
       setState(() {
         _validInput = 'Please input a number!';
       });
