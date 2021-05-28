@@ -42,10 +42,7 @@ class _NumberGamesState extends State<NumberGames> {
                   child: Center(
                     child: Text(
                       'Games',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -92,10 +89,7 @@ class _NumberGamesState extends State<NumberGames> {
                       child: Text(
                         'Simple Number Game App',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.grey, fontSize: 25.0, fontWeight: FontWeight.bold),
                       ),
                     ),
         ),
@@ -228,10 +222,7 @@ class _GuessingGameState extends State<GuessingGame> {
               child: const Text(
                 "I'm thinking of a number between 1 and 100.",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 25.0,
-                    fontStyle: FontStyle.italic),
+                style: TextStyle(color: Colors.blueGrey, fontSize: 25.0, fontStyle: FontStyle.italic),
               ),
             ),
             Container(
@@ -239,10 +230,7 @@ class _GuessingGameState extends State<GuessingGame> {
               child: const Text(
                 "It's your turn to guess my number!",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 25.0,
-                    fontStyle: FontStyle.italic),
+                style: TextStyle(color: Colors.blueGrey, fontSize: 25.0, fontStyle: FontStyle.italic),
               ),
             ),
             Container(
@@ -252,10 +240,7 @@ class _GuessingGameState extends State<GuessingGame> {
                 child: Text(
                   _guessText(),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold),
+                  style: const TextStyle(color: Colors.grey, fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -274,10 +259,7 @@ class _GuessingGameState extends State<GuessingGame> {
                       child: const Text(
                         'Try a number!',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.grey, fontSize: 25.0, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Center(
@@ -295,15 +277,9 @@ class _GuessingGameState extends State<GuessingGame> {
                             hintText: 'Make a guess...',
                             hintStyle: TextStyle(color: Colors.grey),
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.grey,
-                                    width: 2.0,
-                                    style: BorderStyle.solid)),
+                                borderSide: BorderSide(color: Colors.grey, width: 2.0, style: BorderStyle.solid)),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.blueAccent,
-                                    width: 2.0,
-                                    style: BorderStyle.solid)),
+                                borderSide: BorderSide(color: Colors.blueAccent, width: 2.0, style: BorderStyle.solid)),
                           ),
                         ),
                       ),
@@ -312,8 +288,7 @@ class _GuessingGameState extends State<GuessingGame> {
                       margin: const EdgeInsets.all(20.0),
                       width: 200.0,
                       height: 50.0,
-                      decoration:
-                          BoxDecoration(color: Colors.blue.withOpacity(0.75)),
+                      decoration: BoxDecoration(color: Colors.blue.withOpacity(0.75)),
                       child: InkWell(
                         splashColor: Colors.blueAccent,
                         onTap: _performAction,
@@ -324,10 +299,7 @@ class _GuessingGameState extends State<GuessingGame> {
                                 : _compareGuess() == 0
                                     ? 'Reset'
                                     : 'Guess',
-                            style: const TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.black54,
-                                fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 20.0, color: Colors.black54, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -443,15 +415,9 @@ class _PerfectNumState extends State<PerfectNum> {
                     hintText: 'Input a number...',
                     hintStyle: TextStyle(color: Colors.grey),
                     enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 2.0,
-                            style: BorderStyle.solid)),
+                        borderSide: BorderSide(color: Colors.grey, width: 2.0, style: BorderStyle.solid)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.blueAccent,
-                            width: 2.0,
-                            style: BorderStyle.solid)),
+                        borderSide: BorderSide(color: Colors.blueAccent, width: 2.0, style: BorderStyle.solid)),
                   ),
                 ),
               ),
