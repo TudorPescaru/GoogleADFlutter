@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 void main() {
-  runApp(NumberGames());
+  runApp(const NumberGames());
 }
 
 class NumberGames extends StatefulWidget {
-  const NumberGames({Key key}) : super(key: key);
+  const NumberGames({Key? key}) : super(key: key);
 
   @override
   _NumberGamesState createState() => _NumberGamesState();
@@ -35,7 +35,7 @@ class _NumberGamesState extends State<NumberGames> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                DrawerHeader(
+                const DrawerHeader(
                   decoration: BoxDecoration(
                     color: Colors.blue,
                   ),
@@ -50,7 +50,7 @@ class _NumberGamesState extends State<NumberGames> {
                   ),
                 ),
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     'Guess my number',
                     style: TextStyle(
                       fontSize: 20.0,
@@ -66,7 +66,7 @@ class _NumberGamesState extends State<NumberGames> {
                   selectedTileColor: Colors.blue.withOpacity(0),
                 ),
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     'Number Shapes',
                     style: TextStyle(
                       fontSize: 20.0,
@@ -85,19 +85,19 @@ class _NumberGamesState extends State<NumberGames> {
             ),
           ),
           body: _selectedGuess
-            ? GuessingGame()
-            : _selectedPerfect
-              ? PerfectNum()
-              : Center(
-                child: Text(
-                  'Simple Number Game App',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+              ? const GuessingGame()
+              : _selectedPerfect
+                  ? const PerfectNum()
+                  : const Center(
+                      child: Text(
+                        'Simple Number Game App',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
         ),
       ),
     );
@@ -105,15 +105,15 @@ class _NumberGamesState extends State<NumberGames> {
 }
 
 class GuessingGame extends StatefulWidget {
-  const GuessingGame({Key key}) : super(key: key);
+  const GuessingGame({Key? key}) : super(key: key);
 
   @override
   _GuessingGameState createState() => _GuessingGameState();
 }
 
 class _GuessingGameState extends State<GuessingGame> {
-  int _guess;
-  int _secretNum;
+  late int _guess;
+  late int _secretNum;
   final Random _random = Random();
   final FocusNode _focusNode = FocusNode();
   final TextEditingController _myController = TextEditingController();
@@ -121,7 +121,7 @@ class _GuessingGameState extends State<GuessingGame> {
   @override
   void initState() {
     super.initState();
-    _guess = null;
+    _guess = Null as int;
     _secretNum = _random.nextInt(100) + 1;
   }
 
@@ -134,7 +134,7 @@ class _GuessingGameState extends State<GuessingGame> {
   void _generateSecret() {
     _clearText();
     setState(() {
-      _guess = null;
+      _guess = Null as int;
       _secretNum = _random.nextInt(100) + 1;
     });
   }
@@ -148,7 +148,7 @@ class _GuessingGameState extends State<GuessingGame> {
   // Make a guess
   void _makeGuess() {
     _focusNode.unfocus();
-    int input = int.tryParse(_myController.text);
+    final int input = int.tryParse(_myController.text)!;
     if (input != null) {
       // Update guessed number
       setState(() {
@@ -156,21 +156,25 @@ class _GuessingGameState extends State<GuessingGame> {
       });
       // Show popup if guess was correct
       if (_compareGuess() == 0) {
-        showDialog(
+        showDialog<Widget>(
           context: context,
           builder: (BuildContext context) => _buildPopupDialog(context),
         );
       }
     } else {
       setState(() {
-        _guess = null;
+        _guess = Null as int;
       });
     }
   }
 
   // Make guess or reset secret number if guess was correct
   void _performAction() {
-    _guess == null ? _makeGuess() : _compareGuess() == 0 ? _generateSecret() : _makeGuess();
+    _guess == null
+        ? _makeGuess()
+        : _compareGuess() == 0
+            ? _generateSecret()
+            : _makeGuess();
   }
 
   // Text displayed based on guess
@@ -178,20 +182,20 @@ class _GuessingGameState extends State<GuessingGame> {
     return _guess == null
         ? ''
         : _guess > 100
-        ? 'Your guess is invalid'
-        : _guess < 1
-        ? 'Your guess is invalid'
-        : _compareGuess() == 0
-        ? 'You tried $_guess\nYou guessed right.'
-        : _compareGuess() < 0
-        ? 'You tried $_guess\nTry higher'
-        : 'You tried $_guess\nTry lower';
+            ? 'Your guess is invalid'
+            : _guess < 1
+                ? 'Your guess is invalid'
+                : _compareGuess() == 0
+                    ? 'You tried $_guess\nYou guessed right.'
+                    : _compareGuess() < 0
+                        ? 'You tried $_guess\nTry higher'
+                        : 'You tried $_guess\nTry lower';
   }
 
   // Create dialog popup window when guess is correct
   Widget _buildPopupDialog(BuildContext context) {
-    return new AlertDialog(
-      title: Text('You guessed right'),
+    return AlertDialog(
+      title: const Text('You guessed right'),
       content: Text('It was $_secretNum'),
       actions: <Widget>[
         TextButton(
@@ -199,13 +203,13 @@ class _GuessingGameState extends State<GuessingGame> {
             Navigator.of(context).pop();
             _generateSecret();
           },
-          child: Text('Try again!'),
+          child: const Text('Try again!'),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('OK'),
+          child: const Text('OK'),
         )
       ],
     );
@@ -220,9 +224,9 @@ class _GuessingGameState extends State<GuessingGame> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-              child: Text(
-                'I\'m thinking of a number between 1 and 100.',
+              margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              child: const Text(
+                "I'm thinking of a number between 1 and 100.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.blueGrey,
@@ -231,9 +235,9 @@ class _GuessingGameState extends State<GuessingGame> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(
-                'It\'s your turn to guess my number!',
+              margin: const EdgeInsets.symmetric(vertical: 10.0),
+              child: const Text(
+                "It's your turn to guess my number!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.blueGrey,
@@ -242,32 +246,32 @@ class _GuessingGameState extends State<GuessingGame> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0),
+              margin: const EdgeInsets.symmetric(vertical: 10.0),
               child: Visibility(
                 visible: _guess != null,
                 child: Text(
                   _guessText(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold),
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: 250,
               child: Card(
                 shadowColor: Colors.black,
                 elevation: 25.0,
                 color: Colors.white,
-                margin: EdgeInsets.all(10.0),
+                margin: const EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
+                      margin: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: const Text(
                         'Try a number!',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -278,25 +282,24 @@ class _GuessingGameState extends State<GuessingGame> {
                     ),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: TextField(
                           focusNode: _focusNode,
                           controller: _myController,
-                          keyboardType: TextInputType.numberWithOptions(
-                              decimal: false, signed: false),
+                          keyboardType: TextInputType.number,
                           onTap: _clearText,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20.0,
                           ),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Make a guess...',
                             hintStyle: TextStyle(color: Colors.grey),
-                            enabledBorder: new UnderlineInputBorder(
+                            enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Colors.grey,
                                     width: 2.0,
                                     style: BorderStyle.solid)),
-                            focusedBorder: new UnderlineInputBorder(
+                            focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Colors.blueAccent,
                                     width: 2.0,
@@ -306,17 +309,22 @@ class _GuessingGameState extends State<GuessingGame> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(20.0),
+                      margin: const EdgeInsets.all(20.0),
                       width: 200.0,
                       height: 50.0,
-                      decoration: BoxDecoration(color: Colors.blue.withOpacity(0.75)),
+                      decoration:
+                          BoxDecoration(color: Colors.blue.withOpacity(0.75)),
                       child: InkWell(
                         splashColor: Colors.blueAccent,
                         onTap: _performAction,
                         child: Center(
                           child: Text(
-                            _guess == null ? 'Guess' : _compareGuess() == 0 ? 'Reset' : 'Guess',
-                            style: TextStyle(
+                            _guess == null
+                                ? 'Guess'
+                                : _compareGuess() == 0
+                                    ? 'Reset'
+                                    : 'Guess',
+                            style: const TextStyle(
                                 fontSize: 20.0,
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold),
@@ -336,7 +344,7 @@ class _GuessingGameState extends State<GuessingGame> {
 }
 
 class PerfectNum extends StatefulWidget {
-  const PerfectNum({Key key}) : super(key: key);
+  const PerfectNum({Key? key}) : super(key: key);
 
   @override
   _PerfectNumState createState() => _PerfectNumState();
@@ -358,9 +366,9 @@ class _PerfectNumState extends State<PerfectNum> {
       return;
     }
     _focusNode.unfocus();
-    int input = int.tryParse(_myController.text);
+    final int input = int.tryParse(_myController.text)!;
     if (input != null) {
-      showDialog(
+      showDialog<Widget>(
         context: context,
         builder: (BuildContext context) => _buildPopupDialog(context, input),
       );
@@ -369,7 +377,7 @@ class _PerfectNumState extends State<PerfectNum> {
 
   // Check if number is square
   bool _isSquare(int number) {
-    int sr = sqrt(number).round();
+    final int sr = sqrt(number).round();
     return sr * sr == number;
   }
 
@@ -385,24 +393,20 @@ class _PerfectNumState extends State<PerfectNum> {
 
   // Build popup with number type
   Widget _buildPopupDialog(BuildContext context, int input) {
-    return new AlertDialog(
+    return AlertDialog(
       title: Text(
         '$input',
-        style: TextStyle(
-          fontSize: 25.0
-        ),
+        style: const TextStyle(fontSize: 25.0),
       ),
       content: Text(
         !_isSquare(input) && !_isTriangular(input)
-        ? 'Number $input is neither TRIANGULAR nor SQUARE.'
-        : _isSquare(input) && _isTriangular(input)
-        ? 'Number $input is both SQUARE and TRIANGULAR.'
-        : _isSquare(input)
-        ? 'Number $input is SQUARE.'
-        : 'Number $input is TRIANGULAR.',
-        style: TextStyle(
-          fontSize: 20.0
-        ),
+            ? 'Number $input is neither TRIANGULAR nor SQUARE.'
+            : _isSquare(input) && _isTriangular(input)
+                ? 'Number $input is both SQUARE and TRIANGULAR.'
+                : _isSquare(input)
+                    ? 'Number $input is SQUARE.'
+                    : 'Number $input is TRIANGULAR.',
+        style: const TextStyle(fontSize: 20.0),
       ),
     );
   }
@@ -415,36 +419,35 @@ class _PerfectNumState extends State<PerfectNum> {
         child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.all(20.0),
-              child: Text(
+              margin: const EdgeInsets.all(20.0),
+              child: const Text(
                 'Please input a number to see if it is square or triangular.',
                 style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 25.0,
+                  color: Colors.blueGrey,
+                  fontSize: 25.0,
                 ),
               ),
             ),
             Center(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10.0),
+                margin: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: TextField(
                   focusNode: _focusNode,
                   controller: _myController,
-                  keyboardType: TextInputType.numberWithOptions(
-                      decimal: false, signed: false),
+                  keyboardType: TextInputType.number,
                   onTap: _clearText,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Input a number...',
                     hintStyle: TextStyle(color: Colors.grey),
-                    enabledBorder: new UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                             color: Colors.grey,
                             width: 2.0,
                             style: BorderStyle.solid)),
-                    focusedBorder: new UnderlineInputBorder(
+                    focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                             color: Colors.blueAccent,
                             width: 2.0,
@@ -453,23 +456,19 @@ class _PerfectNumState extends State<PerfectNum> {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
+              margin: const EdgeInsets.symmetric(vertical: 20.0),
               alignment: Alignment.bottomRight,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder()
-                ),
+                style: ElevatedButton.styleFrom(shape: const CircleBorder()),
                 onPressed: _checkNumber,
                 child: Container(
                   width: 60.0,
                   height: 60.0,
                   alignment: Alignment.center,
-                  child: Icon(
-                    Icons.check
-                  ),
-                )
+                  child: const Icon(Icons.check),
+                ),
               ),
             )
           ],
