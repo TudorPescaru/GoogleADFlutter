@@ -1,0 +1,27 @@
+name: ip_api
+description: An app that makes an API call to get your IP.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  http: ^0.13.3
+  built_value: ^8.0.6
+  built_collection: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.0.4
+  built_value_generator: ^8.0.6
+
+flutter:
+  uses-material-design: true
+
