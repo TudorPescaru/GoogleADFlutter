@@ -17,19 +17,36 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Weather object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'lat',
-      serializers.serialize(object.lat, specifiedType: const FullType(double)),
-      'lon',
-      serializers.serialize(object.lon, specifiedType: const FullType(double)),
-      'timezone',
-      serializers.serialize(object.timezone, specifiedType: const FullType(String)),
-      'timezone_offset',
-      serializers.serialize(object.timezoneOffset, specifiedType: const FullType(int)),
-      'current',
-      serializers.serialize(object.current, specifiedType: const FullType(WeatherCurrent)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.cod;
+    if (value != null) {
+      result..add('cod')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.message;
+    if (value != null) {
+      result..add('message')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.lat;
+    if (value != null) {
+      result..add('lat')..add(serializers.serialize(value, specifiedType: const FullType(double)));
+    }
+    value = object.lon;
+    if (value != null) {
+      result..add('lon')..add(serializers.serialize(value, specifiedType: const FullType(double)));
+    }
+    value = object.timezone;
+    if (value != null) {
+      result..add('timezone')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.timezoneOffset;
+    if (value != null) {
+      result..add('timezone_offset')..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.current;
+    if (value != null) {
+      result..add('current')..add(serializers.serialize(value, specifiedType: const FullType(WeatherCurrent)));
+    }
     return result;
   }
 
@@ -44,17 +61,23 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'cod':
+          result.cod = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
+          break;
+        case 'message':
+          result.message = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
+          break;
         case 'lat':
-          result.lat = serializers.deserialize(value, specifiedType: const FullType(double)) as double;
+          result.lat = serializers.deserialize(value, specifiedType: const FullType(double)) as double?;
           break;
         case 'lon':
-          result.lon = serializers.deserialize(value, specifiedType: const FullType(double)) as double;
+          result.lon = serializers.deserialize(value, specifiedType: const FullType(double)) as double?;
           break;
         case 'timezone':
-          result.timezone = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.timezone = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'timezone_offset':
-          result.timezoneOffset = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          result.timezoneOffset = serializers.deserialize(value, specifiedType: const FullType(int)) as int?;
           break;
         case 'current':
           result.current.replace(
@@ -69,31 +92,24 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
 
 class _$Weather extends Weather {
   @override
-  final double lat;
+  final String? cod;
   @override
-  final double lon;
+  final String? message;
   @override
-  final String timezone;
+  final double? lat;
   @override
-  final int timezoneOffset;
+  final double? lon;
   @override
-  final WeatherCurrent current;
+  final String? timezone;
+  @override
+  final int? timezoneOffset;
+  @override
+  final WeatherCurrent? current;
 
   factory _$Weather([void Function(WeatherBuilder)? updates]) => (new WeatherBuilder()..update(updates)).build();
 
-  _$Weather._(
-      {required this.lat,
-      required this.lon,
-      required this.timezone,
-      required this.timezoneOffset,
-      required this.current})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(lat, 'Weather', 'lat');
-    BuiltValueNullFieldError.checkNotNull(lon, 'Weather', 'lon');
-    BuiltValueNullFieldError.checkNotNull(timezone, 'Weather', 'timezone');
-    BuiltValueNullFieldError.checkNotNull(timezoneOffset, 'Weather', 'timezoneOffset');
-    BuiltValueNullFieldError.checkNotNull(current, 'Weather', 'current');
-  }
+  _$Weather._({this.cod, this.message, this.lat, this.lon, this.timezone, this.timezoneOffset, this.current})
+      : super._();
 
   @override
   Weather rebuild(void Function(WeatherBuilder) updates) => (toBuilder()..update(updates)).build();
@@ -105,6 +121,8 @@ class _$Weather extends Weather {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Weather &&
+        cod == other.cod &&
+        message == other.message &&
         lat == other.lat &&
         lon == other.lon &&
         timezone == other.timezone &&
@@ -114,13 +132,17 @@ class _$Weather extends Weather {
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc($jc($jc(0, lat.hashCode), lon.hashCode), timezone.hashCode), timezoneOffset.hashCode),
+    return $jf($jc(
+        $jc($jc($jc($jc($jc($jc(0, cod.hashCode), message.hashCode), lat.hashCode), lon.hashCode), timezone.hashCode),
+            timezoneOffset.hashCode),
         current.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Weather')
+          ..add('cod', cod)
+          ..add('message', message)
           ..add('lat', lat)
           ..add('lon', lon)
           ..add('timezone', timezone)
@@ -132,6 +154,14 @@ class _$Weather extends Weather {
 
 class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather? _$v;
+
+  String? _cod;
+  String? get cod => _$this._cod;
+  set cod(String? cod) => _$this._cod = cod;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
 
   double? _lat;
   double? get lat => _$this._lat;
@@ -158,11 +188,13 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   WeatherBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _cod = $v.cod;
+      _message = $v.message;
       _lat = $v.lat;
       _lon = $v.lon;
       _timezone = $v.timezone;
       _timezoneOffset = $v.timezoneOffset;
-      _current = $v.current.toBuilder();
+      _current = $v.current?.toBuilder();
       _$v = null;
     }
     return this;
@@ -185,16 +217,18 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
     try {
       _$result = _$v ??
           new _$Weather._(
-              lat: BuiltValueNullFieldError.checkNotNull(lat, 'Weather', 'lat'),
-              lon: BuiltValueNullFieldError.checkNotNull(lon, 'Weather', 'lon'),
-              timezone: BuiltValueNullFieldError.checkNotNull(timezone, 'Weather', 'timezone'),
-              timezoneOffset: BuiltValueNullFieldError.checkNotNull(timezoneOffset, 'Weather', 'timezoneOffset'),
-              current: current.build());
+              cod: cod,
+              message: message,
+              lat: lat,
+              lon: lon,
+              timezone: timezone,
+              timezoneOffset: timezoneOffset,
+              current: _current?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'current';
-        current.build();
+        _current?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError('Weather', _$failedField, e.toString());
       }

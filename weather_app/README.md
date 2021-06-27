@@ -1,3 +1,4 @@
-# ip_api
+# weather_app
 
-An app that makes an API call to get your IP.
+An app that uses three API calls to retrieve your IP, your geolocation based on your IP and the weather in your current 
+location based on the retrieved geolocation data.

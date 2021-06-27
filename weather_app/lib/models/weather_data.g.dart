@@ -17,17 +17,24 @@ class _$WeatherDataSerializer implements StructuredSerializer<WeatherData> {
   @override
   Iterable<Object?> serialize(Serializers serializers, WeatherData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'main',
-      serializers.serialize(object.main, specifiedType: const FullType(String)),
-      'description',
-      serializers.serialize(object.description, specifiedType: const FullType(String)),
-      'icon',
-      serializers.serialize(object.icon, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result..add('id')..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.main;
+    if (value != null) {
+      result..add('main')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.description;
+    if (value != null) {
+      result..add('description')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.icon;
+    if (value != null) {
+      result..add('icon')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -43,16 +50,16 @@ class _$WeatherDataSerializer implements StructuredSerializer<WeatherData> {
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          result.id = serializers.deserialize(value, specifiedType: const FullType(int)) as int?;
           break;
         case 'main':
-          result.main = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.main = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'description':
-          result.description = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.description = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'icon':
-          result.icon = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.icon = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -63,23 +70,18 @@ class _$WeatherDataSerializer implements StructuredSerializer<WeatherData> {
 
 class _$WeatherData extends WeatherData {
   @override
-  final int id;
+  final int? id;
   @override
-  final String main;
+  final String? main;
   @override
-  final String description;
+  final String? description;
   @override
-  final String icon;
+  final String? icon;
 
   factory _$WeatherData([void Function(WeatherDataBuilder)? updates]) =>
       (new WeatherDataBuilder()..update(updates)).build();
 
-  _$WeatherData._({required this.id, required this.main, required this.description, required this.icon}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'WeatherData', 'id');
-    BuiltValueNullFieldError.checkNotNull(main, 'WeatherData', 'main');
-    BuiltValueNullFieldError.checkNotNull(description, 'WeatherData', 'description');
-    BuiltValueNullFieldError.checkNotNull(icon, 'WeatherData', 'icon');
-  }
+  _$WeatherData._({this.id, this.main, this.description, this.icon}) : super._();
 
   @override
   WeatherData rebuild(void Function(WeatherDataBuilder) updates) => (toBuilder()..update(updates)).build();
@@ -159,12 +161,7 @@ class WeatherDataBuilder implements Builder<WeatherData, WeatherDataBuilder> {
 
   @override
   _$WeatherData build() {
-    final _$result = _$v ??
-        new _$WeatherData._(
-            id: BuiltValueNullFieldError.checkNotNull(id, 'WeatherData', 'id'),
-            main: BuiltValueNullFieldError.checkNotNull(main, 'WeatherData', 'main'),
-            description: BuiltValueNullFieldError.checkNotNull(description, 'WeatherData', 'description'),
-            icon: BuiltValueNullFieldError.checkNotNull(icon, 'WeatherData', 'icon'));
+    final _$result = _$v ?? new _$WeatherData._(id: id, main: main, description: description, icon: icon);
     replace(_$result);
     return _$result;
   }

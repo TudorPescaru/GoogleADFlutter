@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "ip_api")
-set(APPLICATION_ID "com.example.ip_api")
+set(BINARY_NAME "weather_app")
+set(APPLICATION_ID "com.example.weather_app")
 
 cmake_policy(SET CMP0063 NEW)
 

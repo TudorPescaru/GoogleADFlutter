@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:ip_api/models/weather.dart';
 import 'models/geoloc.dart';
 import 'models/weather.dart';
 
@@ -29,9 +28,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final String _apiKey = '{API key}';
-  late Geoloc _geoloc;
-  late Weather _weather;
+  final String _apiKey = '{Provide an API key}';
+  Geoloc? _geoloc;
+  Weather? _weather;
 
   @override
   void initState() {
@@ -59,8 +58,8 @@ class _HomePageState extends State<HomePage> {
       host: 'api.openweathermap.org',
       pathSegments: <String>['data', '2.5', 'onecall'],
       queryParameters: <String, String>{
-        'lat': _geoloc.lat.toString(),
-        'lon': _geoloc.lon.toString(),
+        'lat': _geoloc!.lat.toString(),
+        'lon': _geoloc!.lon.toString(),
         'exclude': 'minutely,hourly,daily,alerts',
         'units': 'metric',
         'appid': _apiKey,
@@ -76,28 +75,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text('Weather App')),
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(235, 110, 75, 1.0),
+        centerTitle: true,
+        title: const Text('Weather App'),
+      ),
+      backgroundColor: const Color.fromRGBO(72, 72, 74, 1.0),
       body: Center(
         child: Column(
           children: <Widget>[
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
-                'Weather in ${_geoloc.city}, ${_geoloc.region}, ${_geoloc.country}',
+                _geoloc == null
+                    ? 'No location available!'
+                    : 'Weather in ${_geoloc!.city}, ${_geoloc!.region}, ${_geoloc!.country}',
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 30.0,
                 ),
               ),
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Image.network('https://openweathermap.org/img/w/${_weather.current.weather[0].icon}.png'),
+              child: Image.network(
+                _weather == null
+                    ? 'https://cdn4.iconfinder.com/data/icons/leto-weather/64/na_not_available_weather_sun-512.png'
+                    : 'https://openweathermap.org/img/w/${_weather!.current!.weather![0].icon}.png',
+                scale: _weather == null ? 2.0 : 0.4,
+              ),
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
-                '${_weather.current.temp}\u00b0C',
+                _weather == null ? 'No temperature available!' : '${_weather!.current!.temp}\u00b0C',
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 30.0,
                 ),
               ),
@@ -105,8 +118,11 @@ class _HomePageState extends State<HomePage> {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
-                _weather.current.weather[0].description.toUpperCase(),
+                _weather == null
+                    ? 'No description available!'
+                    : _weather!.current!.weather![0].description!.toUpperCase(),
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 30.0,
                 ),
               ),

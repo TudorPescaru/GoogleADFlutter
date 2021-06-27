@@ -1,4 +1,4 @@
-name: ip_api
+name: weather_app
 description: An app that makes an API call to get your IP.
 
 publish_to: 'none'
