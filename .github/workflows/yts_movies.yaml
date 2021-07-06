@@ -1,0 +1,38 @@
+name: "Flutter CI"
+on:
+    push:
+        paths:
+            - 'yts_movies/**'
+
+jobs:
+    check-format:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Get Code"
+              uses: actions/checkout@v2
+            - name: "Install Flutter"
+              uses: subosito/flutter-action@v1
+              with:
+                  channel: stable
+            - name: "Setup Project"
+              working-directory: ./yts_movies
+              run: flutter pub get
+            - name: "Check Format"
+              working-directory: ./yts_movies
+              run: flutter format -l 120 --set-exit-if-changed .
+    analyze-code:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Get Code"
+              uses: actions/checkout@v2
+            - name: "Install Flutter"
+              uses: subosito/flutter-action@v1
+              with:
+                  channel: stable
+            - name: "Setup Project"
+              working-directory: ./yts_movies
+              run: flutter pub get
+            - name: "Analyze code"
+              working-directory: ./yts_movies
+              run: flutter analyze
+
