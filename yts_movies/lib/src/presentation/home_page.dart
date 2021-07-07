@@ -75,13 +75,15 @@ class _HomePageState extends State<HomePage> {
             builder: (BuildContext context, bool isLoading) {
               if (isLoading && movies.isEmpty) {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
                 );
               }
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.69,
                 ),
                 controller: _controller,
                 itemCount: movies.length,
@@ -97,10 +99,14 @@ class _HomePageState extends State<HomePage> {
                           fit: BoxFit.cover,
                         ),
                         footer: GridTileBar(
-                          backgroundColor: Colors.black38,
+                          backgroundColor: Colors.black45,
                           title: Text(
                             movie.title,
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
