@@ -1,5 +1,6 @@
 import 'package:redux/redux.dart';
 import 'package:yts_movies/src/actions/get_movies.dart';
+import 'package:yts_movies/src/actions/set_selected_movie.dart';
 import 'package:yts_movies/src/models/app_state.dart';
 
 Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
@@ -9,6 +10,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetMovies>(_getMovies),
   TypedReducer<AppState, GetMoviesSuccessful>(_getMoviesSuccessful),
   TypedReducer<AppState, GetMoviesError>(_getMoviesError),
+  TypedReducer<AppState, SetSelectedMovie>(_setSelectedMovie)
 ]);
 
 AppState _getMovies(AppState state, GetMovies action) {
@@ -31,5 +33,11 @@ AppState _getMoviesError(AppState state, GetMoviesError action) {
     b
       ..isLoading = false
       ..error = '${action.error}';
+  });
+}
+
+AppState _setSelectedMovie(AppState state, SetSelectedMovie action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.selectedMovie = action.movieId;
   });
 }

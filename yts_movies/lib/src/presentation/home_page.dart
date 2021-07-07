@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:yts_movies/src/actions/get_movies.dart';
+import 'package:yts_movies/src/actions/set_selected_movie.dart';
 import 'package:yts_movies/src/container/is_loading_container.dart';
 import 'package:yts_movies/src/container/movies_container.dart';
 import 'package:yts_movies/src/models/app_state.dart';
@@ -112,8 +113,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     onTap: () {
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedMovie(movie.id));
                       Navigator.push(context, MaterialPageRoute<void>(builder: (BuildContext context) {
-                        return MoviePage(movie: movie);
+                        return const MoviePage();
                       }));
                     },
                   );

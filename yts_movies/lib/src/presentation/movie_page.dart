@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:yts_movies/src/models/app_state.dart';
 import 'package:yts_movies/src/models/movie.dart';
 
-class MoviePage extends StatefulWidget {
-  const MoviePage({Key? key, required Movie movie})
-      : _movie = movie,
-        super(key: key);
+class MoviePage extends StatelessWidget {
+  const MoviePage({Key? key}) : super(key: key);
 
-  final Movie _movie;
-
-  @override
-  _MoviePageState createState() => _MoviePageState();
-}
-
-class _MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
+    final Store<AppState> store = StoreProvider.of<AppState>(context);
+    final Movie movie = store.state.movies[store.state.selectedMovie!];
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._movie.title),
+        title: Text(movie.title),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
@@ -28,21 +24,18 @@ class _MoviePageState extends State<MoviePage> {
           child: Column(
             children: <Widget>[
               Container(
+                padding: const EdgeInsets.all(2.5),
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width * 1.33,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      widget._movie.largeCoverImage,
-                    ),
-                    fit: BoxFit.fill,
-                  ),
+                height: MediaQuery.of(context).size.width * 1.44,
+                child: Image.network(
+                  movie.largeCoverImage,
+                  fit: BoxFit.cover,
                 ),
               ),
               Container(
                 padding: const EdgeInsets.all(2.5),
                 child: Text(
-                  widget._movie.title,
+                  movie.title,
                   style: const TextStyle(
                     fontSize: 32,
                   ),
@@ -51,7 +44,7 @@ class _MoviePageState extends State<MoviePage> {
               Container(
                 padding: const EdgeInsets.all(2.5),
                 child: Text(
-                  widget._movie.year == 0 ? 'Not available!' : '${widget._movie.year}',
+                  movie.year == 0 ? 'Not available!' : '${movie.year}',
                   style: const TextStyle(
                     fontSize: 16,
                   ),
@@ -60,7 +53,7 @@ class _MoviePageState extends State<MoviePage> {
               Container(
                 padding: const EdgeInsets.all(2.5),
                 child: Text(
-                  widget._movie.runtime == 0 ? 'Not available!' : '${widget._movie.runtime} minutes',
+                  movie.runtime == 0 ? 'Not available!' : '${movie.runtime} minutes',
                   style: const TextStyle(
                     fontSize: 16,
                   ),
@@ -72,7 +65,7 @@ class _MoviePageState extends State<MoviePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      widget._movie.rating == 0 ? 'Not available!' : '${widget._movie.rating / 2} / 5 ',
+                      movie.rating == 0 ? 'Not available!' : '${movie.rating / 2} / 5 ',
                       style: const TextStyle(
                         fontSize: 20,
                       ),
@@ -87,7 +80,7 @@ class _MoviePageState extends State<MoviePage> {
               Container(
                 padding: const EdgeInsets.all(2.5),
                 child: Text(
-                  widget._movie.summary,
+                  movie.summary,
                   style: const TextStyle(
                     fontSize: 14,
                   ),
