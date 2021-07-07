@@ -30,10 +30,6 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
     if (value != null) {
       result..add('error')..add(serializers.serialize(value, specifiedType: const FullType(String)));
     }
-    value = object.selectedMovie;
-    if (value != null) {
-      result..add('selectedMovie')..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     return result;
   }
 
@@ -61,9 +57,6 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'page':
           result.page = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
           break;
-        case 'selectedMovie':
-          result.selectedMovie = serializers.deserialize(value, specifiedType: const FullType(int)) as int?;
-          break;
       }
     }
 
@@ -80,13 +73,10 @@ class _$AppState extends AppState {
   final String? error;
   @override
   final int page;
-  @override
-  final int? selectedMovie;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) => (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({required this.movies, required this.isLoading, this.error, required this.page, this.selectedMovie})
-      : super._() {
+  _$AppState._({required this.movies, required this.isLoading, this.error, required this.page}) : super._() {
     BuiltValueNullFieldError.checkNotNull(movies, 'AppState', 'movies');
     BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page');
@@ -105,14 +95,12 @@ class _$AppState extends AppState {
         movies == other.movies &&
         isLoading == other.isLoading &&
         error == other.error &&
-        page == other.page &&
-        selectedMovie == other.selectedMovie;
+        page == other.page;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc($jc($jc(0, movies.hashCode), isLoading.hashCode), error.hashCode), page.hashCode),
-        selectedMovie.hashCode));
+    return $jf($jc($jc($jc($jc(0, movies.hashCode), isLoading.hashCode), error.hashCode), page.hashCode));
   }
 
   @override
@@ -121,8 +109,7 @@ class _$AppState extends AppState {
           ..add('movies', movies)
           ..add('isLoading', isLoading)
           ..add('error', error)
-          ..add('page', page)
-          ..add('selectedMovie', selectedMovie))
+          ..add('page', page))
         .toString();
   }
 }
@@ -146,10 +133,6 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get page => _$this._page;
   set page(int? page) => _$this._page = page;
 
-  int? _selectedMovie;
-  int? get selectedMovie => _$this._selectedMovie;
-  set selectedMovie(int? selectedMovie) => _$this._selectedMovie = selectedMovie;
-
   AppStateBuilder();
 
   AppStateBuilder get _$this {
@@ -159,7 +142,6 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _isLoading = $v.isLoading;
       _error = $v.error;
       _page = $v.page;
-      _selectedMovie = $v.selectedMovie;
       _$v = null;
     }
     return this;
@@ -185,8 +167,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               movies: movies.build(),
               isLoading: BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading'),
               error: error,
-              page: BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page'),
-              selectedMovie: selectedMovie);
+              page: BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page'));
     } catch (_) {
       late String _$failedField;
       try {
