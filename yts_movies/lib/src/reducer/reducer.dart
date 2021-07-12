@@ -4,9 +4,6 @@ import 'package:yts_movies/src/actions/set_selected_movie.dart';
 import 'package:yts_movies/src/models/app_state.dart';
 
 Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
-  (AppState state, dynamic action) {
-    return state;
-  },
   TypedReducer<AppState, GetMovies>(_getMovies),
   TypedReducer<AppState, GetMoviesSuccessful>(_getMoviesSuccessful),
   TypedReducer<AppState, GetMoviesError>(_getMoviesError),
