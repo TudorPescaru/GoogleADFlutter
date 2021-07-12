@@ -11,7 +11,7 @@ class MoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Store<AppState> store = StoreProvider.of<AppState>(context);
-    final Movie movie = store.state.movies[store.state.selectedMovie!];
+    final Movie movie = store.state.movies.firstWhere((Movie m) => m.id == store.state.selectedMovie);
     return Scaffold(
       appBar: AppBar(
         title: Text(movie.title),
