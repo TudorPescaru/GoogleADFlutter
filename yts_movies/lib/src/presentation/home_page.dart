@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final String? error = StoreProvider.of<AppState>(context).state.error;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Movies'),
@@ -70,61 +71,66 @@ class _HomePageState extends State<HomePage> {
           }),
         ],
       ),
-      body: MoviesContainer(
-        builder: (BuildContext context, List<Movie> movies) {
-          return IsLoadingContainer(
-            builder: (BuildContext context, bool isLoading) {
-              if (isLoading && movies.isEmpty) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                );
-              }
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.69,
-                ),
-                controller: _controller,
-                itemCount: movies.length,
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  final Movie movie = movies[index];
-                  return InkWell(
-                    child: Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: GridTile(
-                        child: Image.network(
-                          movie.mediumCoverImage,
-                          fit: BoxFit.cover,
+      body: error == null
+          ? MoviesContainer(
+              builder: (BuildContext context, List<Movie> movies) {
+                return IsLoadingContainer(
+                  builder: (BuildContext context, bool isLoading) {
+                    if (isLoading && movies.isEmpty) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
                         ),
-                        footer: GridTileBar(
-                          backgroundColor: Colors.black45,
-                          title: Text(
-                            movie.title,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      );
+                    }
+                    return GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.69,
+                      ),
+                      controller: _controller,
+                      itemCount: movies.length,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        final Movie movie = movies[index];
+                        return InkWell(
+                          child: Container(
+                            padding: const EdgeInsets.all(10.0),
+                            child: GridTile(
+                              child: Image.network(
+                                movie.mediumCoverImage,
+                                fit: BoxFit.cover,
+                              ),
+                              footer: GridTileBar(
+                                backgroundColor: Colors.black45,
+                                title: Text(
+                                  movie.title,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(SetSelectedMovie(movie.id));
-                      Navigator.push(context, MaterialPageRoute<void>(builder: (BuildContext context) {
-                        return const MoviePage();
-                      }));
-                    },
-                  );
-                },
-              );
-            },
-          );
-        },
-      ),
+                          onTap: () {
+                            StoreProvider.of<AppState>(context).dispatch(SetSelectedMovie(movie.id));
+                            Navigator.push(context, MaterialPageRoute<void>(builder: (BuildContext context) {
+                              return const MoviePage();
+                            }));
+                          },
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            )
+          : Text(
+              error,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
     );
   }
 }
