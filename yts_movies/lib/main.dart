@@ -3,11 +3,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
-import 'package:yts_movies/src/actions/get_movies.dart';
+import 'package:yts_movies/src/actions/index.dart';
 import 'package:yts_movies/src/data/movies_api.dart';
 import 'package:yts_movies/src/epics/app_epics.dart';
 import 'package:yts_movies/src/middleware/middleware.dart';
-import 'package:yts_movies/src/models/app_state.dart';
+import 'package:yts_movies/src/models/index.dart';
 import 'package:yts_movies/src/presentation/home_page.dart';
 import 'package:yts_movies/src/reducer/reducer.dart';
 

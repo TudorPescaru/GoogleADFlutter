@@ -1,10 +1,4 @@
-library torrent;
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:yts_movies/src/models/serializers.dart';
-
-part 'torrent.g.dart';
+part of models;
 
 abstract class Torrent implements Built<Torrent, TorrentBuilder> {
   factory Torrent([void Function(TorrentBuilder b) updates]) = _$Torrent;

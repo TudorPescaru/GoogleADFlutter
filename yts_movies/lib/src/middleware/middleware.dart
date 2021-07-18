@@ -1,5 +1,5 @@
-import 'package:yts_movies/src/actions/set_selected_movie.dart';
-import 'package:yts_movies/src/models/app_state.dart';
+import 'package:yts_movies/src/actions/index.dart';
+import 'package:yts_movies/src/models/index.dart';
 import 'package:redux/redux.dart';
 
 class AppMiddleware {

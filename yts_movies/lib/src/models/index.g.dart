@@ -1,12 +1,77 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of movie;
+part of models;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
+Serializer<AppState> _$appStateSerializer = new _$AppStateSerializer();
 Serializer<Movie> _$movieSerializer = new _$MovieSerializer();
+Serializer<Torrent> _$torrentSerializer = new _$TorrentSerializer();
+
+class _$AppStateSerializer implements StructuredSerializer<AppState> {
+  @override
+  final Iterable<Type> types = const [AppState, _$AppState];
+  @override
+  final String wireName = 'AppState';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, AppState object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'movies',
+      serializers.serialize(object.movies, specifiedType: const FullType(BuiltList, const [const FullType(Movie)])),
+      'isLoading',
+      serializers.serialize(object.isLoading, specifiedType: const FullType(bool)),
+      'page',
+      serializers.serialize(object.page, specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.error;
+    if (value != null) {
+      result..add('error')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    value = object.selectedMovie;
+    if (value != null) {
+      result..add('selectedMovie')..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  AppState deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new AppStateBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'movies':
+          result.movies.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [const FullType(Movie)]))! as BuiltList<Object?>);
+          break;
+        case 'isLoading':
+          result.isLoading = serializers.deserialize(value, specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'error':
+          result.error = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
+          break;
+        case 'page':
+          result.page = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          break;
+        case 'selectedMovie':
+          result.selectedMovie = serializers.deserialize(value, specifiedType: const FullType(int)) as int?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
 
 class _$MovieSerializer implements StructuredSerializer<Movie> {
   @override
@@ -170,6 +235,220 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
     }
 
     return result.build();
+  }
+}
+
+class _$TorrentSerializer implements StructuredSerializer<Torrent> {
+  @override
+  final Iterable<Type> types = const [Torrent, _$Torrent];
+  @override
+  final String wireName = 'Torrent';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Torrent object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'url',
+      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'hash',
+      serializers.serialize(object.hash, specifiedType: const FullType(String)),
+      'quality',
+      serializers.serialize(object.quality, specifiedType: const FullType(String)),
+      'type',
+      serializers.serialize(object.type, specifiedType: const FullType(String)),
+      'seeds',
+      serializers.serialize(object.seeds, specifiedType: const FullType(int)),
+      'peers',
+      serializers.serialize(object.peers, specifiedType: const FullType(int)),
+      'size',
+      serializers.serialize(object.size, specifiedType: const FullType(String)),
+      'size_bytes',
+      serializers.serialize(object.sizeBytes, specifiedType: const FullType(int)),
+      'date_uploaded',
+      serializers.serialize(object.dateUploaded, specifiedType: const FullType(String)),
+      'date_uploaded_unix',
+      serializers.serialize(object.dateUploadedUnix, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Torrent deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new TorrentBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'url':
+          result.url = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'hash':
+          result.hash = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'quality':
+          result.quality = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'type':
+          result.type = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'seeds':
+          result.seeds = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          break;
+        case 'peers':
+          result.peers = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          break;
+        case 'size':
+          result.size = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'size_bytes':
+          result.sizeBytes = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          break;
+        case 'date_uploaded':
+          result.dateUploaded = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'date_uploaded_unix':
+          result.dateUploadedUnix = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$AppState extends AppState {
+  @override
+  final BuiltList<Movie> movies;
+  @override
+  final bool isLoading;
+  @override
+  final String? error;
+  @override
+  final int page;
+  @override
+  final int? selectedMovie;
+
+  factory _$AppState([void Function(AppStateBuilder)? updates]) => (new AppStateBuilder()..update(updates)).build();
+
+  _$AppState._({required this.movies, required this.isLoading, this.error, required this.page, this.selectedMovie})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(movies, 'AppState', 'movies');
+    BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page');
+  }
+
+  @override
+  AppState rebuild(void Function(AppStateBuilder) updates) => (toBuilder()..update(updates)).build();
+
+  @override
+  AppStateBuilder toBuilder() => new AppStateBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AppState &&
+        movies == other.movies &&
+        isLoading == other.isLoading &&
+        error == other.error &&
+        page == other.page &&
+        selectedMovie == other.selectedMovie;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc($jc($jc($jc(0, movies.hashCode), isLoading.hashCode), error.hashCode), page.hashCode),
+        selectedMovie.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('AppState')
+          ..add('movies', movies)
+          ..add('isLoading', isLoading)
+          ..add('error', error)
+          ..add('page', page)
+          ..add('selectedMovie', selectedMovie))
+        .toString();
+  }
+}
+
+class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
+  _$AppState? _$v;
+
+  ListBuilder<Movie>? _movies;
+  ListBuilder<Movie> get movies => _$this._movies ??= new ListBuilder<Movie>();
+  set movies(ListBuilder<Movie>? movies) => _$this._movies = movies;
+
+  bool? _isLoading;
+  bool? get isLoading => _$this._isLoading;
+  set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
+
+  String? _error;
+  String? get error => _$this._error;
+  set error(String? error) => _$this._error = error;
+
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
+
+  int? _selectedMovie;
+  int? get selectedMovie => _$this._selectedMovie;
+  set selectedMovie(int? selectedMovie) => _$this._selectedMovie = selectedMovie;
+
+  AppStateBuilder();
+
+  AppStateBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _movies = $v.movies.toBuilder();
+      _isLoading = $v.isLoading;
+      _error = $v.error;
+      _page = $v.page;
+      _selectedMovie = $v.selectedMovie;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AppState other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$AppState;
+  }
+
+  @override
+  void update(void Function(AppStateBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$AppState build() {
+    _$AppState _$result;
+    try {
+      _$result = _$v ??
+          new _$AppState._(
+              movies: movies.build(),
+              isLoading: BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading'),
+              error: error,
+              page: BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page'),
+              selectedMovie: selectedMovie);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'movies';
+        movies.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError('AppState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
   }
 }
 
@@ -618,4 +897,200 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+class _$Torrent extends Torrent {
+  @override
+  final String url;
+  @override
+  final String hash;
+  @override
+  final String quality;
+  @override
+  final String type;
+  @override
+  final int seeds;
+  @override
+  final int peers;
+  @override
+  final String size;
+  @override
+  final int sizeBytes;
+  @override
+  final String dateUploaded;
+  @override
+  final int dateUploadedUnix;
+
+  factory _$Torrent([void Function(TorrentBuilder)? updates]) => (new TorrentBuilder()..update(updates)).build();
+
+  _$Torrent._(
+      {required this.url,
+      required this.hash,
+      required this.quality,
+      required this.type,
+      required this.seeds,
+      required this.peers,
+      required this.size,
+      required this.sizeBytes,
+      required this.dateUploaded,
+      required this.dateUploadedUnix})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(url, 'Torrent', 'url');
+    BuiltValueNullFieldError.checkNotNull(hash, 'Torrent', 'hash');
+    BuiltValueNullFieldError.checkNotNull(quality, 'Torrent', 'quality');
+    BuiltValueNullFieldError.checkNotNull(type, 'Torrent', 'type');
+    BuiltValueNullFieldError.checkNotNull(seeds, 'Torrent', 'seeds');
+    BuiltValueNullFieldError.checkNotNull(peers, 'Torrent', 'peers');
+    BuiltValueNullFieldError.checkNotNull(size, 'Torrent', 'size');
+    BuiltValueNullFieldError.checkNotNull(sizeBytes, 'Torrent', 'sizeBytes');
+    BuiltValueNullFieldError.checkNotNull(dateUploaded, 'Torrent', 'dateUploaded');
+    BuiltValueNullFieldError.checkNotNull(dateUploadedUnix, 'Torrent', 'dateUploadedUnix');
+  }
+
+  @override
+  Torrent rebuild(void Function(TorrentBuilder) updates) => (toBuilder()..update(updates)).build();
+
+  @override
+  TorrentBuilder toBuilder() => new TorrentBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Torrent &&
+        url == other.url &&
+        hash == other.hash &&
+        quality == other.quality &&
+        type == other.type &&
+        seeds == other.seeds &&
+        peers == other.peers &&
+        size == other.size &&
+        sizeBytes == other.sizeBytes &&
+        dateUploaded == other.dateUploaded &&
+        dateUploadedUnix == other.dateUploadedUnix;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc($jc($jc($jc($jc(0, url.hashCode), hash.hashCode), quality.hashCode), type.hashCode),
+                            seeds.hashCode),
+                        peers.hashCode),
+                    size.hashCode),
+                sizeBytes.hashCode),
+            dateUploaded.hashCode),
+        dateUploadedUnix.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Torrent')
+          ..add('url', url)
+          ..add('hash', hash)
+          ..add('quality', quality)
+          ..add('type', type)
+          ..add('seeds', seeds)
+          ..add('peers', peers)
+          ..add('size', size)
+          ..add('sizeBytes', sizeBytes)
+          ..add('dateUploaded', dateUploaded)
+          ..add('dateUploadedUnix', dateUploadedUnix))
+        .toString();
+  }
+}
+
+class TorrentBuilder implements Builder<Torrent, TorrentBuilder> {
+  _$Torrent? _$v;
+
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
+
+  String? _hash;
+  String? get hash => _$this._hash;
+  set hash(String? hash) => _$this._hash = hash;
+
+  String? _quality;
+  String? get quality => _$this._quality;
+  set quality(String? quality) => _$this._quality = quality;
+
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
+
+  int? _seeds;
+  int? get seeds => _$this._seeds;
+  set seeds(int? seeds) => _$this._seeds = seeds;
+
+  int? _peers;
+  int? get peers => _$this._peers;
+  set peers(int? peers) => _$this._peers = peers;
+
+  String? _size;
+  String? get size => _$this._size;
+  set size(String? size) => _$this._size = size;
+
+  int? _sizeBytes;
+  int? get sizeBytes => _$this._sizeBytes;
+  set sizeBytes(int? sizeBytes) => _$this._sizeBytes = sizeBytes;
+
+  String? _dateUploaded;
+  String? get dateUploaded => _$this._dateUploaded;
+  set dateUploaded(String? dateUploaded) => _$this._dateUploaded = dateUploaded;
+
+  int? _dateUploadedUnix;
+  int? get dateUploadedUnix => _$this._dateUploadedUnix;
+  set dateUploadedUnix(int? dateUploadedUnix) => _$this._dateUploadedUnix = dateUploadedUnix;
+
+  TorrentBuilder();
+
+  TorrentBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _url = $v.url;
+      _hash = $v.hash;
+      _quality = $v.quality;
+      _type = $v.type;
+      _seeds = $v.seeds;
+      _peers = $v.peers;
+      _size = $v.size;
+      _sizeBytes = $v.sizeBytes;
+      _dateUploaded = $v.dateUploaded;
+      _dateUploadedUnix = $v.dateUploadedUnix;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Torrent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Torrent;
+  }
+
+  @override
+  void update(void Function(TorrentBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Torrent build() {
+    final _$result = _$v ??
+        new _$Torrent._(
+            url: BuiltValueNullFieldError.checkNotNull(url, 'Torrent', 'url'),
+            hash: BuiltValueNullFieldError.checkNotNull(hash, 'Torrent', 'hash'),
+            quality: BuiltValueNullFieldError.checkNotNull(quality, 'Torrent', 'quality'),
+            type: BuiltValueNullFieldError.checkNotNull(type, 'Torrent', 'type'),
+            seeds: BuiltValueNullFieldError.checkNotNull(seeds, 'Torrent', 'seeds'),
+            peers: BuiltValueNullFieldError.checkNotNull(peers, 'Torrent', 'peers'),
+            size: BuiltValueNullFieldError.checkNotNull(size, 'Torrent', 'size'),
+            sizeBytes: BuiltValueNullFieldError.checkNotNull(sizeBytes, 'Torrent', 'sizeBytes'),
+            dateUploaded: BuiltValueNullFieldError.checkNotNull(dateUploaded, 'Torrent', 'dateUploaded'),
+            dateUploadedUnix: BuiltValueNullFieldError.checkNotNull(dateUploadedUnix, 'Torrent', 'dateUploadedUnix'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
