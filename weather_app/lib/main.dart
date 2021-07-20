@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
 import 'package:redux/redux.dart';
@@ -13,12 +12,11 @@ import 'package:weather_app/src/models/index.dart';
 import 'package:weather_app/src/presentation/home_page.dart';
 import 'package:weather_app/src/reducers/reducers.dart';
 
-Future<void> main() async {
-  await dotenv.load();
+void main() {
   const String ipApiUrl = 'https://api.ipify.org';
   const String geolocApiUrl = 'http://ip-api.com';
   const String weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall';
-  final String apiKey = dotenv.env['API_KEY']!;
+  const String apiKey = '{API_KEY}';
 
   final Client client = Client();
   final IpApi ipApi = IpApi(apiUrl: ipApiUrl, client: client);
