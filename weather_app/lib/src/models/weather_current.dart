@@ -1,11 +1,4 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-
-import 'serializers.dart';
-import 'weather_data.dart';
-
-part 'weather_current.g.dart';
+part of models;
 
 abstract class WeatherCurrent implements Built<WeatherCurrent, WeatherCurrentBuilder> {
   factory WeatherCurrent([void Function(WeatherCurrentBuilder) updates]) = _$WeatherCurrent;

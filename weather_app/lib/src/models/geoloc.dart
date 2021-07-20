@@ -1,9 +1,4 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-
-import 'serializers.dart';
-
-part 'geoloc.g.dart';
+part of models;
 
 abstract class Geoloc implements Built<Geoloc, GeolocBuilder> {
   factory Geoloc([void Function(GeolocBuilder) updates]) = _$Geoloc;

@@ -1,9 +1,4 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-
-import 'serializers.dart';
-
-part 'weather_data.g.dart';
+part of models;
 
 abstract class WeatherData implements Built<WeatherData, WeatherDataBuilder> {
   factory WeatherData([void Function(WeatherDataBuilder) updates]) = _$WeatherData;

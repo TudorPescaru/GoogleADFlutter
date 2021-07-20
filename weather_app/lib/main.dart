@@ -1,134 +1,56 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
-import 'models/geoloc.dart';
-import 'models/weather.dart';
+import 'package:redux/redux.dart';
+import 'package:redux_epics/redux_epics.dart';
+import 'package:weather_app/src/actions/index.dart';
+import 'package:weather_app/src/data/geoloc_api.dart';
+import 'package:weather_app/src/data/ip_api.dart';
+import 'package:weather_app/src/data/weather_api.dart';
+import 'package:weather_app/src/epics/app_epics.dart';
+import 'package:weather_app/src/models/index.dart';
+import 'package:weather_app/src/presentation/home_page.dart';
+import 'package:weather_app/src/reducers/reducers.dart';
 
-void main() {
-  runApp(const APIApp());
+Future<void> main() async {
+  await dotenv.load();
+  const String ipApiUrl = 'https://api.ipify.org';
+  const String geolocApiUrl = 'http://ip-api.com';
+  const String weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+  final String apiKey = dotenv.env['API_KEY']!;
+
+  final Client client = Client();
+  final IpApi ipApi = IpApi(apiUrl: ipApiUrl, client: client);
+  final GeolocApi geolocApi = GeolocApi(apiUrl: geolocApiUrl, client: client);
+  final WeatherApi weatherApi = WeatherApi(apiUrl: weatherApiUrl, apiKey: apiKey, client: client);
+  final AppEpics appEpics = AppEpics(ipApi: ipApi, geolocApi: geolocApi, weatherApi: weatherApi);
+  final Store<AppState> store = Store<AppState>(
+    reducer,
+    initialState: AppState(),
+    middleware: <Middleware<AppState>>[
+      EpicMiddleware<AppState>(appEpics.epics),
+    ],
+  );
+
+  store.dispatch(const GetIp());
+
+  runApp(APIApp(store: store));
 }
 
 class APIApp extends StatelessWidget {
-  const APIApp({Key? key}) : super(key: key);
+  const APIApp({Key? key, required this.store}) : super(key: key);
+
+  final Store<AppState> store;
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final String _apiKey = '{Provide an API key}';
-  Geoloc? _geoloc;
-  Weather? _weather;
-
-  @override
-  void initState() {
-    super.initState();
-    _getIP();
-  }
-
-  Future<void> _getIP() async {
-    final Uri urlIP = Uri(scheme: 'https', host: 'api.ipify.org', queryParameters: <String, String>{'format': 'json'});
-    final Response ipResponse = await get(urlIP);
-    final Map<String, dynamic> ipBody = jsonDecode(ipResponse.body) as Map<String, dynamic>;
-    final String ip = ipBody['ip'] as String;
-    final Uri urlGeolocation = Uri(
-      scheme: 'http',
-      host: 'ip-api.com',
-      pathSegments: <String>['json', ip],
-    );
-    final Response geoResponse = await get(urlGeolocation);
-    final Map<String, dynamic> geoBody = jsonDecode(geoResponse.body) as Map<String, dynamic>;
-    setState(() {
-      _geoloc = Geoloc.fromJson(geoBody);
-    });
-    final Uri urlWeather = Uri(
-      scheme: 'https',
-      host: 'api.openweathermap.org',
-      pathSegments: <String>['data', '2.5', 'onecall'],
-      queryParameters: <String, String>{
-        'lat': _geoloc!.lat.toString(),
-        'lon': _geoloc!.lon.toString(),
-        'exclude': 'minutely,hourly,daily,alerts',
-        'units': 'metric',
-        'appid': _apiKey,
-      },
-    );
-    final Response weatherResponse = await get(urlWeather);
-    final Map<String, dynamic> weatherBody = jsonDecode(weatherResponse.body) as Map<String, dynamic>;
-    setState(() {
-      _weather = Weather.fromJson(weatherBody);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(235, 110, 75, 1.0),
-        centerTitle: true,
-        title: const Text('Weather App'),
-      ),
-      backgroundColor: const Color.fromRGBO(72, 72, 74, 1.0),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                _geoloc == null
-                    ? 'No location available!'
-                    : 'Weather in ${_geoloc!.city}, ${_geoloc!.region}, ${_geoloc!.country}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Image.network(
-                _weather == null
-                    ? 'https://cdn4.iconfinder.com/data/icons/leto-weather/64/na_not_available_weather_sun-512.png'
-                    : 'https://openweathermap.org/img/w/${_weather!.current!.weather![0].icon}.png',
-                scale: _weather == null ? 2.0 : 0.4,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                _weather == null ? 'No temperature available!' : '${_weather!.current!.temp}\u00b0C',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                _weather == null
-                    ? 'No description available!'
-                    : _weather!.current!.weather![0].description!.toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                ),
-              ),
-            ),
-          ],
-        ),
+    return StoreProvider<AppState>(
+      store: store,
+      child: MaterialApp(
+        title: 'Weather App',
+        theme: ThemeData.light(),
+        home: const HomePage(),
       ),
     );
   }
