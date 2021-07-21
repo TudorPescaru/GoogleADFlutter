@@ -13,7 +13,7 @@ import 'package:redux_epics/redux_epics.dart';
 
 void main() {
   const String apiUrl = 'https://api.unsplash.com';
-  const String apiKey = '-WGV7uN-91UrdZqu96S1oa3yBSl8GLiKG_rnbb1U2lw';
+  const String apiKey = '{API_KEY}';
   final Client client = Client();
   final PhotosApi photosApi = PhotosApi(apiUrl: apiUrl, apiKey: apiKey, client: client);
   const AppMiddleware appMiddleware = AppMiddleware();
