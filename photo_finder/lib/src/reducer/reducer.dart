@@ -11,6 +11,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetPhotosSuccessful>(_getPhotosSuccessful),
   TypedReducer<AppState, GetPhotosError>(_getPhotosError),
   TypedReducer<AppState, SetSelectedPhoto>(_setSelectedPhoto),
+  TypedReducer<AppState, SearchPhotos>(_searchPhotos),
 ]);
 
 AppState _getPhotos(AppState state, GetPhotosStart action) {
@@ -39,5 +40,15 @@ AppState _getPhotosError(AppState state, GetPhotosError action) {
 AppState _setSelectedPhoto(AppState state, SetSelectedPhoto action) {
   return state.rebuild((AppStateBuilder b) {
     b.selectedPhoto = action.photoId;
+  });
+}
+
+AppState _searchPhotos(AppState state, SearchPhotos action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..isLoading = false
+      ..page = 1
+      ..photos.clear()
+      ..query = action.query;
   });
 }

@@ -532,3 +532,121 @@ abstract class SetSelectedPhoto$ implements SetSelectedPhoto {
   @JsonKey(ignore: true)
   $SetSelectedPhoto$CopyWith<SetSelectedPhoto$> get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$SearchPhotosTearOff {
+  const _$SearchPhotosTearOff();
+
+  SearchPhotos$ call(String query) {
+    return SearchPhotos$(
+      query,
+    );
+  }
+}
+
+/// @nodoc
+const $SearchPhotos = _$SearchPhotosTearOff();
+
+/// @nodoc
+mixin _$SearchPhotos {
+  String get query => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SearchPhotosCopyWith<SearchPhotos> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchPhotosCopyWith<$Res> {
+  factory $SearchPhotosCopyWith(SearchPhotos value, $Res Function(SearchPhotos) then) =
+      _$SearchPhotosCopyWithImpl<$Res>;
+  $Res call({String query});
+}
+
+/// @nodoc
+class _$SearchPhotosCopyWithImpl<$Res> implements $SearchPhotosCopyWith<$Res> {
+  _$SearchPhotosCopyWithImpl(this._value, this._then);
+
+  final SearchPhotos _value;
+  // ignore: unused_field
+  final $Res Function(SearchPhotos) _then;
+
+  @override
+  $Res call({
+    Object? query = freezed,
+  }) {
+    return _then(_value.copyWith(
+      query: query == freezed
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $SearchPhotos$CopyWith<$Res> implements $SearchPhotosCopyWith<$Res> {
+  factory $SearchPhotos$CopyWith(SearchPhotos$ value, $Res Function(SearchPhotos$) then) =
+      _$SearchPhotos$CopyWithImpl<$Res>;
+  @override
+  $Res call({String query});
+}
+
+/// @nodoc
+class _$SearchPhotos$CopyWithImpl<$Res> extends _$SearchPhotosCopyWithImpl<$Res>
+    implements $SearchPhotos$CopyWith<$Res> {
+  _$SearchPhotos$CopyWithImpl(SearchPhotos$ _value, $Res Function(SearchPhotos$) _then)
+      : super(_value, (v) => _then(v as SearchPhotos$));
+
+  @override
+  SearchPhotos$ get _value => super._value as SearchPhotos$;
+
+  @override
+  $Res call({
+    Object? query = freezed,
+  }) {
+    return _then(SearchPhotos$(
+      query == freezed
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchPhotos$ implements SearchPhotos$ {
+  const _$SearchPhotos$(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'SearchPhotos(query: $query)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SearchPhotos$ &&
+            (identical(other.query, query) || const DeepCollectionEquality().equals(other.query, query)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(query);
+
+  @JsonKey(ignore: true)
+  @override
+  $SearchPhotos$CopyWith<SearchPhotos$> get copyWith => _$SearchPhotos$CopyWithImpl<SearchPhotos$>(this, _$identity);
+}
+
+abstract class SearchPhotos$ implements SearchPhotos {
+  const factory SearchPhotos$(String query) = _$SearchPhotos$;
+
+  @override
+  String get query => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $SearchPhotos$CopyWith<SearchPhotos$> get copyWith => throw _privateConstructorUsedError;
+}

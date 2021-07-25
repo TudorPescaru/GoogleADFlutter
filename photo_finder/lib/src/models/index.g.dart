@@ -28,6 +28,8 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       serializers.serialize(object.isLoading, specifiedType: const FullType(bool)),
       'page',
       serializers.serialize(object.page, specifiedType: const FullType(int)),
+      'query',
+      serializers.serialize(object.query, specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.error;
@@ -67,6 +69,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           break;
         case 'selectedPhoto':
           result.selectedPhoto = serializers.deserialize(value, specifiedType: const FullType(int)) as int?;
+          break;
+        case 'query':
+          result.query = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -298,14 +303,23 @@ class _$AppState extends AppState {
   final int page;
   @override
   final int? selectedPhoto;
+  @override
+  final String query;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) => (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({required this.photos, required this.isLoading, this.error, required this.page, this.selectedPhoto})
+  _$AppState._(
+      {required this.photos,
+      required this.isLoading,
+      this.error,
+      required this.page,
+      this.selectedPhoto,
+      required this.query})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(photos, 'AppState', 'photos');
     BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page');
+    BuiltValueNullFieldError.checkNotNull(query, 'AppState', 'query');
   }
 
   @override
@@ -322,13 +336,16 @@ class _$AppState extends AppState {
         isLoading == other.isLoading &&
         error == other.error &&
         page == other.page &&
-        selectedPhoto == other.selectedPhoto;
+        selectedPhoto == other.selectedPhoto &&
+        query == other.query;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc($jc($jc(0, photos.hashCode), isLoading.hashCode), error.hashCode), page.hashCode),
-        selectedPhoto.hashCode));
+    return $jf($jc(
+        $jc($jc($jc($jc($jc(0, photos.hashCode), isLoading.hashCode), error.hashCode), page.hashCode),
+            selectedPhoto.hashCode),
+        query.hashCode));
   }
 
   @override
@@ -338,7 +355,8 @@ class _$AppState extends AppState {
           ..add('isLoading', isLoading)
           ..add('error', error)
           ..add('page', page)
-          ..add('selectedPhoto', selectedPhoto))
+          ..add('selectedPhoto', selectedPhoto)
+          ..add('query', query))
         .toString();
   }
 }
@@ -366,6 +384,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get selectedPhoto => _$this._selectedPhoto;
   set selectedPhoto(int? selectedPhoto) => _$this._selectedPhoto = selectedPhoto;
 
+  String? _query;
+  String? get query => _$this._query;
+  set query(String? query) => _$this._query = query;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
@@ -376,6 +398,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _error = $v.error;
       _page = $v.page;
       _selectedPhoto = $v.selectedPhoto;
+      _query = $v.query;
       _$v = null;
     }
     return this;
@@ -402,7 +425,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               isLoading: BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading'),
               error: error,
               page: BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page'),
-              selectedPhoto: selectedPhoto);
+              selectedPhoto: selectedPhoto,
+              query: BuiltValueNullFieldError.checkNotNull(query, 'AppState', 'query'));
     } catch (_) {
       late String _$failedField;
       try {

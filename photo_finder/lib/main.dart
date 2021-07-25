@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
-import 'package:photo_finder/src/actions/index.dart';
 import 'package:photo_finder/src/data/photos_api.dart';
 import 'package:photo_finder/src/epics/app_epics.dart';
 import 'package:photo_finder/src/middleware/middleware.dart';
 import 'package:photo_finder/src/models/index.dart';
+import 'package:photo_finder/src/presentation/home_page.dart';
 import 'package:photo_finder/src/reducer/reducer.dart';
 import 'package:redux/redux.dart';
-import 'package:photo_finder/src/presentation/home_page.dart';
 import 'package:redux_epics/redux_epics.dart';
 
 void main() {
@@ -26,8 +25,6 @@ void main() {
         ] +
         appMiddleware.middleware,
   );
-
-  store.dispatch(const GetPhotos());
 
   runApp(PhotoFinder(store: store));
 }

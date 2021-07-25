@@ -17,7 +17,7 @@ class AppEpics {
 
   Stream<AppAction> _getPhotos(Stream<GetPhotosStart> actions, EpicStore<AppState> store) {
     return actions
-        .asyncMap((GetPhotosStart action) => _photosApi.getPhotos(store.state.page))
+        .asyncMap((GetPhotosStart action) => _photosApi.getPhotos(store.state.page, store.state.query))
         .map((List<Photo> photos) => GetPhotos.successful(photos))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPhotos.error(error, stackTrace));
   }

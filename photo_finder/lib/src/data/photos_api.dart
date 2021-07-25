@@ -13,8 +13,8 @@ class PhotosApi {
   final String _apiKey;
   final Client _client;
 
-  Future<List<Photo>> getPhotos(int page) async {
-    final Uri uri = Uri.parse('$_apiUrl/search/photos?client_id=$_apiKey&page=$page&query=dogs');
+  Future<List<Photo>> getPhotos(int page, String query) async {
+    final Uri uri = Uri.parse('$_apiUrl/search/photos?client_id=$_apiKey&page=$page&query=$query');
     final Response response = await _client.get(uri);
 
     if (response.statusCode >= 300) {

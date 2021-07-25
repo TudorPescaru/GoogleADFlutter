@@ -10,18 +10,11 @@ class PhotoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Store<AppState> store = StoreProvider.of<AppState>(context);
     final Photo photo = store.state.photos[store.state.selectedPhoto!];
+    final String query = store.state.query;
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.black,
-        ),
-        centerTitle: true,
-        title: Text(
-          photo.id,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
         ),
         backgroundColor: Colors.white,
       ),
@@ -113,7 +106,7 @@ class PhotoPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      photo.description != null ? photo.description! : 'Photo of a Dog',
+                      photo.description != null ? photo.description! : 'Photo of $query',
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,
