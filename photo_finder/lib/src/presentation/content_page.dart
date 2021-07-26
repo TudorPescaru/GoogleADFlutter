@@ -161,7 +161,11 @@ class _ContentPageState extends State<ContentPage> {
             )
           : Text(
               error,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
     );
   }
