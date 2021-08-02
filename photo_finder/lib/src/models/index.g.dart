@@ -8,9 +8,10 @@ part of models;
 
 Serializer<AppState> _$appStateSerializer = new _$AppStateSerializer();
 Serializer<Photo> _$photoSerializer = new _$PhotoSerializer();
-Serializer<User> _$userSerializer = new _$UserSerializer();
+Serializer<Poster> _$posterSerializer = new _$PosterSerializer();
 Serializer<ProfileImage> _$profileImageSerializer = new _$ProfileImageSerializer();
 Serializer<Urls> _$urlsSerializer = new _$UrlsSerializer();
+Serializer<AppUser> _$appUserSerializer = new _$AppUserSerializer();
 
 class _$AppStateSerializer implements StructuredSerializer<AppState> {
   @override
@@ -32,6 +33,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       serializers.serialize(object.query, specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.user;
+    if (value != null) {
+      result..add('user')..add(serializers.serialize(value, specifiedType: const FullType(AppUser)));
+    }
     value = object.error;
     if (value != null) {
       result..add('error')..add(serializers.serialize(value, specifiedType: const FullType(String)));
@@ -54,6 +59,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'user':
+          result.user.replace(serializers.deserialize(value, specifiedType: const FullType(AppUser))! as AppUser);
+          break;
         case 'photos':
           result.photos.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [const FullType(Photo)]))! as BuiltList<Object?>);
@@ -94,7 +102,7 @@ class _$PhotoSerializer implements StructuredSerializer<Photo> {
       'likes',
       serializers.serialize(object.likes, specifiedType: const FullType(int)),
       'user',
-      serializers.serialize(object.user, specifiedType: const FullType(User)),
+      serializers.serialize(object.user, specifiedType: const FullType(Poster)),
       'urls',
       serializers.serialize(object.urls, specifiedType: const FullType(Urls)),
     ];
@@ -127,7 +135,7 @@ class _$PhotoSerializer implements StructuredSerializer<Photo> {
           result.description = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'user':
-          result.user.replace(serializers.deserialize(value, specifiedType: const FullType(User))! as User);
+          result.user.replace(serializers.deserialize(value, specifiedType: const FullType(Poster))! as Poster);
           break;
         case 'urls':
           result.urls.replace(serializers.deserialize(value, specifiedType: const FullType(Urls))! as Urls);
@@ -139,14 +147,14 @@ class _$PhotoSerializer implements StructuredSerializer<Photo> {
   }
 }
 
-class _$UserSerializer implements StructuredSerializer<User> {
+class _$PosterSerializer implements StructuredSerializer<Poster> {
   @override
-  final Iterable<Type> types = const [User, _$User];
+  final Iterable<Type> types = const [Poster, _$Poster];
   @override
-  final String wireName = 'User';
+  final String wireName = 'Poster';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, User object, {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(Serializers serializers, Poster object, {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
@@ -160,9 +168,9 @@ class _$UserSerializer implements StructuredSerializer<User> {
   }
 
   @override
-  User deserialize(Serializers serializers, Iterable<Object?> serialized,
+  Poster deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new UserBuilder();
+    final result = new PosterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -292,7 +300,64 @@ class _$UrlsSerializer implements StructuredSerializer<Urls> {
   }
 }
 
+class _$AppUserSerializer implements StructuredSerializer<AppUser> {
+  @override
+  final Iterable<Type> types = const [AppUser, _$AppUser];
+  @override
+  final String wireName = 'AppUser';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, AppUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'uid',
+      serializers.serialize(object.uid, specifiedType: const FullType(String)),
+      'username',
+      serializers.serialize(object.username, specifiedType: const FullType(String)),
+      'email',
+      serializers.serialize(object.email, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.photoUrl;
+    if (value != null) {
+      result..add('photoUrl')..add(serializers.serialize(value, specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  AppUser deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new AppUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'uid':
+          result.uid = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'username':
+          result.username = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'photoUrl':
+          result.photoUrl = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$AppState extends AppState {
+  @override
+  final AppUser? user;
   @override
   final BuiltList<Photo> photos;
   @override
@@ -309,7 +374,8 @@ class _$AppState extends AppState {
   factory _$AppState([void Function(AppStateBuilder)? updates]) => (new AppStateBuilder()..update(updates)).build();
 
   _$AppState._(
-      {required this.photos,
+      {this.user,
+      required this.photos,
       required this.isLoading,
       this.error,
       required this.page,
@@ -332,6 +398,7 @@ class _$AppState extends AppState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AppState &&
+        user == other.user &&
         photos == other.photos &&
         isLoading == other.isLoading &&
         error == other.error &&
@@ -343,7 +410,9 @@ class _$AppState extends AppState {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc($jc(0, photos.hashCode), isLoading.hashCode), error.hashCode), page.hashCode),
+        $jc(
+            $jc($jc($jc($jc($jc(0, user.hashCode), photos.hashCode), isLoading.hashCode), error.hashCode),
+                page.hashCode),
             selectedPhoto.hashCode),
         query.hashCode));
   }
@@ -351,6 +420,7 @@ class _$AppState extends AppState {
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AppState')
+          ..add('user', user)
           ..add('photos', photos)
           ..add('isLoading', isLoading)
           ..add('error', error)
@@ -363,6 +433,10 @@ class _$AppState extends AppState {
 
 class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   _$AppState? _$v;
+
+  AppUserBuilder? _user;
+  AppUserBuilder get user => _$this._user ??= new AppUserBuilder();
+  set user(AppUserBuilder? user) => _$this._user = user;
 
   ListBuilder<Photo>? _photos;
   ListBuilder<Photo> get photos => _$this._photos ??= new ListBuilder<Photo>();
@@ -393,6 +467,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   AppStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _user = $v.user?.toBuilder();
       _photos = $v.photos.toBuilder();
       _isLoading = $v.isLoading;
       _error = $v.error;
@@ -421,6 +496,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     try {
       _$result = _$v ??
           new _$AppState._(
+              user: _user?.build(),
               photos: photos.build(),
               isLoading: BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading'),
               error: error,
@@ -430,6 +506,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'user';
+        _user?.build();
         _$failedField = 'photos';
         photos.build();
       } catch (e) {
@@ -450,7 +528,7 @@ class _$Photo extends Photo {
   @override
   final String? description;
   @override
-  final User user;
+  final Poster user;
   @override
   final Urls urls;
 
@@ -514,9 +592,9 @@ class PhotoBuilder implements Builder<Photo, PhotoBuilder> {
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
 
-  UserBuilder? _user;
-  UserBuilder get user => _$this._user ??= new UserBuilder();
-  set user(UserBuilder? user) => _$this._user = user;
+  PosterBuilder? _user;
+  PosterBuilder get user => _$this._user ??= new PosterBuilder();
+  set user(PosterBuilder? user) => _$this._user = user;
 
   UrlsBuilder? _urls;
   UrlsBuilder get urls => _$this._urls ??= new UrlsBuilder();
@@ -576,7 +654,7 @@ class PhotoBuilder implements Builder<Photo, PhotoBuilder> {
   }
 }
 
-class _$User extends User {
+class _$Poster extends Poster {
   @override
   final String id;
   @override
@@ -584,24 +662,24 @@ class _$User extends User {
   @override
   final ProfileImage profileImage;
 
-  factory _$User([void Function(UserBuilder)? updates]) => (new UserBuilder()..update(updates)).build();
+  factory _$Poster([void Function(PosterBuilder)? updates]) => (new PosterBuilder()..update(updates)).build();
 
-  _$User._({required this.id, required this.name, required this.profileImage}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'User', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, 'User', 'name');
-    BuiltValueNullFieldError.checkNotNull(profileImage, 'User', 'profileImage');
+  _$Poster._({required this.id, required this.name, required this.profileImage}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'Poster', 'id');
+    BuiltValueNullFieldError.checkNotNull(name, 'Poster', 'name');
+    BuiltValueNullFieldError.checkNotNull(profileImage, 'Poster', 'profileImage');
   }
 
   @override
-  User rebuild(void Function(UserBuilder) updates) => (toBuilder()..update(updates)).build();
+  Poster rebuild(void Function(PosterBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
-  UserBuilder toBuilder() => new UserBuilder()..replace(this);
+  PosterBuilder toBuilder() => new PosterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is User && id == other.id && name == other.name && profileImage == other.profileImage;
+    return other is Poster && id == other.id && name == other.name && profileImage == other.profileImage;
   }
 
   @override
@@ -611,13 +689,13 @@ class _$User extends User {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('User')..add('id', id)..add('name', name)..add('profileImage', profileImage))
+    return (newBuiltValueToStringHelper('Poster')..add('id', id)..add('name', name)..add('profileImage', profileImage))
         .toString();
   }
 }
 
-class UserBuilder implements Builder<User, UserBuilder> {
-  _$User? _$v;
+class PosterBuilder implements Builder<Poster, PosterBuilder> {
+  _$Poster? _$v;
 
   String? _id;
   String? get id => _$this._id;
@@ -631,9 +709,9 @@ class UserBuilder implements Builder<User, UserBuilder> {
   ProfileImageBuilder get profileImage => _$this._profileImage ??= new ProfileImageBuilder();
   set profileImage(ProfileImageBuilder? profileImage) => _$this._profileImage = profileImage;
 
-  UserBuilder();
+  PosterBuilder();
 
-  UserBuilder get _$this {
+  PosterBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
@@ -645,24 +723,24 @@ class UserBuilder implements Builder<User, UserBuilder> {
   }
 
   @override
-  void replace(User other) {
+  void replace(Poster other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$User;
+    _$v = other as _$Poster;
   }
 
   @override
-  void update(void Function(UserBuilder)? updates) {
+  void update(void Function(PosterBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$User build() {
-    _$User _$result;
+  _$Poster build() {
+    _$Poster _$result;
     try {
       _$result = _$v ??
-          new _$User._(
-              id: BuiltValueNullFieldError.checkNotNull(id, 'User', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(name, 'User', 'name'),
+          new _$Poster._(
+              id: BuiltValueNullFieldError.checkNotNull(id, 'Poster', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(name, 'Poster', 'name'),
               profileImage: profileImage.build());
     } catch (_) {
       late String _$failedField;
@@ -670,7 +748,7 @@ class UserBuilder implements Builder<User, UserBuilder> {
         _$failedField = 'profileImage';
         profileImage.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError('User', _$failedField, e.toString());
+        throw new BuiltValueNestedFieldError('Poster', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -890,6 +968,113 @@ class UrlsBuilder implements Builder<Urls, UrlsBuilder> {
             regular: BuiltValueNullFieldError.checkNotNull(regular, 'Urls', 'regular'),
             small: BuiltValueNullFieldError.checkNotNull(small, 'Urls', 'small'),
             thumb: BuiltValueNullFieldError.checkNotNull(thumb, 'Urls', 'thumb'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$AppUser extends AppUser {
+  @override
+  final String uid;
+  @override
+  final String username;
+  @override
+  final String email;
+  @override
+  final String? photoUrl;
+
+  factory _$AppUser([void Function(AppUserBuilder)? updates]) => (new AppUserBuilder()..update(updates)).build();
+
+  _$AppUser._({required this.uid, required this.username, required this.email, this.photoUrl}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(uid, 'AppUser', 'uid');
+    BuiltValueNullFieldError.checkNotNull(username, 'AppUser', 'username');
+    BuiltValueNullFieldError.checkNotNull(email, 'AppUser', 'email');
+  }
+
+  @override
+  AppUser rebuild(void Function(AppUserBuilder) updates) => (toBuilder()..update(updates)).build();
+
+  @override
+  AppUserBuilder toBuilder() => new AppUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AppUser &&
+        uid == other.uid &&
+        username == other.username &&
+        email == other.email &&
+        photoUrl == other.photoUrl;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc($jc($jc(0, uid.hashCode), username.hashCode), email.hashCode), photoUrl.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('AppUser')
+          ..add('uid', uid)
+          ..add('username', username)
+          ..add('email', email)
+          ..add('photoUrl', photoUrl))
+        .toString();
+  }
+}
+
+class AppUserBuilder implements Builder<AppUser, AppUserBuilder> {
+  _$AppUser? _$v;
+
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
+
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  String? _photoUrl;
+  String? get photoUrl => _$this._photoUrl;
+  set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
+
+  AppUserBuilder();
+
+  AppUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _uid = $v.uid;
+      _username = $v.username;
+      _email = $v.email;
+      _photoUrl = $v.photoUrl;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AppUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$AppUser;
+  }
+
+  @override
+  void update(void Function(AppUserBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$AppUser build() {
+    final _$result = _$v ??
+        new _$AppUser._(
+            uid: BuiltValueNullFieldError.checkNotNull(uid, 'AppUser', 'uid'),
+            username: BuiltValueNullFieldError.checkNotNull(username, 'AppUser', 'username'),
+            email: BuiltValueNullFieldError.checkNotNull(email, 'AppUser', 'email'),
+            photoUrl: photoUrl);
     replace(_$result);
     return _$result;
   }

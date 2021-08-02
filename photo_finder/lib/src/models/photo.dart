@@ -12,7 +12,7 @@ abstract class Photo implements Built<Photo, PhotoBuilder> {
 
   String? get description;
 
-  User get user;
+  Poster get user;
 
   Urls get urls;
 

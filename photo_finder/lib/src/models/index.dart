@@ -8,6 +8,7 @@ import 'package:photo_finder/src/models/serializers.dart';
 part 'index.g.dart';
 part 'app_state.dart';
 part 'photo.dart';
-part 'user.dart';
+part 'poster.dart';
 part 'profile_image.dart';
 part 'urls.dart';
+part 'app_user.dart';

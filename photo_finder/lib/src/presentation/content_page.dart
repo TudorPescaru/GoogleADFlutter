@@ -5,6 +5,7 @@ import 'package:photo_finder/src/container/is_loading_container.dart';
 import 'package:photo_finder/src/container/photo_container.dart';
 import 'package:photo_finder/src/models/index.dart';
 import 'package:photo_finder/src/presentation/photo_page.dart';
+import 'package:photo_finder/src/presentation/user_avatar.dart';
 import 'package:redux/redux.dart';
 
 class ContentPage extends StatefulWidget {
@@ -62,6 +63,7 @@ class _ContentPageState extends State<ContentPage> {
           color: Colors.black,
         ),
         backgroundColor: Colors.white,
+        leading: const UserAvatar(),
         actions: <Widget>[
           IsLoadingContainer(
             builder: (BuildContext context, bool isLoading) {

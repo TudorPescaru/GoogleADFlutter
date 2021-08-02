@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:photo_finder/src/actions/index.dart';
 import 'package:photo_finder/src/models/index.dart';
 import 'package:photo_finder/src/presentation/content_page.dart';
+import 'package:photo_finder/src/presentation/user_avatar.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         backgroundColor: Colors.white,
+        leading: const UserAvatar(),
       ),
       body: Center(
         child: Container(

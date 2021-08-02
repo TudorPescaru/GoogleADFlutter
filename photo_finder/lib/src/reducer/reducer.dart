@@ -7,11 +7,14 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
     print(action);
     return state;
   },
+  TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
   TypedReducer<AppState, GetPhotosStart>(_getPhotos),
   TypedReducer<AppState, GetPhotosSuccessful>(_getPhotosSuccessful),
   TypedReducer<AppState, GetPhotosError>(_getPhotosError),
   TypedReducer<AppState, SetSelectedPhoto>(_setSelectedPhoto),
   TypedReducer<AppState, SearchPhotos>(_searchPhotos),
+  TypedReducer<AppState, RegisterSuccessful>(_registerSuccessful),
+  TypedReducer<AppState, SignOutSuccessful>(_signOutSuccessful),
 ]);
 
 AppState _getPhotos(AppState state, GetPhotosStart action) {
@@ -50,5 +53,23 @@ AppState _searchPhotos(AppState state, SearchPhotos action) {
       ..page = 1
       ..photos.clear()
       ..query = action.query;
+  });
+}
+
+AppState _registerSuccessful(AppState state, RegisterSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user = action.user.toBuilder();
+  });
+}
+
+AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user = action.user?.toBuilder();
+  });
+}
+
+AppState _signOutSuccessful(AppState state, SignOutSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user = null;
   });
 }

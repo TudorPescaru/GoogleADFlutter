@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260109402892",
+    "project_id": "photofinder-52762",
+    "storage_bucket": "photofinder-52762.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260109402892:android:73f120ff7a2a86389bff29",
+        "android_client_info": {
+          "package_name": "com.example.photo_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260109402892-fem1vvo6g7rgqe29u1f2b4n4mek6tuhv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbT0rdHMlYEeOGEE7wKxsQQJZFK2e9aJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260109402892-fem1vvo6g7rgqe29u1f2b4n4mek6tuhv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
