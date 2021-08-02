@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:photo_finder/src/actions/index.dart';
 import 'package:photo_finder/src/models/index.dart';
-import 'package:photo_finder/src/presentation/content_page.dart';
 import 'package:photo_finder/src/presentation/user_avatar.dart';
 import 'package:redux/redux.dart';
 
@@ -28,9 +27,7 @@ class _HomePageState extends State<HomePage> {
     store.dispatch(SearchPhotos(query));
     store.dispatch(const GetPhotos());
     _focusNode.unfocus();
-    Navigator.push(context, MaterialPageRoute<void>(builder: (BuildContext context) {
-      return const ContentPage();
-    }));
+    Navigator.pushNamed(context, '/content');
     _controller.clear();
   }
 

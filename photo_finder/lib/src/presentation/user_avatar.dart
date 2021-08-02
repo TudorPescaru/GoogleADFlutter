@@ -4,8 +4,6 @@ import 'package:photo_finder/src/actions/index.dart';
 import 'package:photo_finder/src/container/user_container.dart';
 import 'package:photo_finder/src/models/index.dart';
 
-import 'login_page.dart';
-
 class UserAvatar extends StatelessWidget {
   const UserAvatar({
     Key? key,
@@ -20,9 +18,7 @@ class UserAvatar extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute<void>(builder: (BuildContext context) {
-                  return const LoginPage();
-                }));
+                Navigator.pushNamed(context, '/login');
               },
               child: const CircleAvatar(
                 child: Icon(

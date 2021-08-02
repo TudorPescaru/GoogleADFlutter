@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:photo_finder/src/container/user_container.dart';
 import 'package:photo_finder/src/models/index.dart';
-import 'package:photo_finder/src/presentation/login_page.dart';
 import 'package:photo_finder/src/presentation/user_avatar.dart';
 import 'package:redux/redux.dart';
 
@@ -128,9 +127,7 @@ class PhotoPage extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               if (appUser == null) {
-                Navigator.push(context, MaterialPageRoute<void>(builder: (BuildContext context) {
-                  return const LoginPage();
-                }));
+                Navigator.pushNamed(context, '/login');
               }
             },
             label: const Text('Comment'),

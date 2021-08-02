@@ -9,7 +9,10 @@ import 'package:photo_finder/src/data/auth_api.dart';
 import 'package:photo_finder/src/data/photos_api.dart';
 import 'package:photo_finder/src/epics/app_epics.dart';
 import 'package:photo_finder/src/models/index.dart';
+import 'package:photo_finder/src/presentation/content_page.dart';
 import 'package:photo_finder/src/presentation/home_page.dart';
+import 'package:photo_finder/src/presentation/login_page.dart';
+import 'package:photo_finder/src/presentation/photo_page.dart';
 import 'package:photo_finder/src/reducer/reducer.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -47,6 +50,11 @@ class PhotoFinder extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.light(),
         home: const HomePage(),
+        routes: <String, WidgetBuilder>{
+          '/content': (BuildContext context) => const ContentPage(),
+          '/photo': (BuildContext context) => const PhotoPage(),
+          '/login': (BuildContext context) => const LoginPage(),
+        },
       ),
     );
   }
