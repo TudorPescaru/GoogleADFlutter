@@ -15,7 +15,11 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   AppUser? get user;
 
+  BuiltMap<String, AppUser> get users;
+
   BuiltList<Photo> get photos;
+
+  BuiltList<Comment> get comments;
 
   bool get isLoading;
 
@@ -23,7 +27,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   int get page;
 
-  int? get selectedPhoto;
+  String? get selectedPhoto;
 
   String get query;
 

@@ -12,6 +12,7 @@ Serializer<Poster> _$posterSerializer = new _$PosterSerializer();
 Serializer<ProfileImage> _$profileImageSerializer = new _$ProfileImageSerializer();
 Serializer<Urls> _$urlsSerializer = new _$UrlsSerializer();
 Serializer<AppUser> _$appUserSerializer = new _$AppUserSerializer();
+Serializer<Comment> _$commentSerializer = new _$CommentSerializer();
 
 class _$AppStateSerializer implements StructuredSerializer<AppState> {
   @override
@@ -23,8 +24,13 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
   Iterable<Object?> serialize(Serializers serializers, AppState object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'users',
+      serializers.serialize(object.users,
+          specifiedType: const FullType(BuiltMap, const [const FullType(String), const FullType(AppUser)])),
       'photos',
       serializers.serialize(object.photos, specifiedType: const FullType(BuiltList, const [const FullType(Photo)])),
+      'comments',
+      serializers.serialize(object.comments, specifiedType: const FullType(BuiltList, const [const FullType(Comment)])),
       'isLoading',
       serializers.serialize(object.isLoading, specifiedType: const FullType(bool)),
       'page',
@@ -43,7 +49,7 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
     }
     value = object.selectedPhoto;
     if (value != null) {
-      result..add('selectedPhoto')..add(serializers.serialize(value, specifiedType: const FullType(int)));
+      result..add('selectedPhoto')..add(serializers.serialize(value, specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -62,9 +68,17 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'user':
           result.user.replace(serializers.deserialize(value, specifiedType: const FullType(AppUser))! as AppUser);
           break;
+        case 'users':
+          result.users.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltMap, const [const FullType(String), const FullType(AppUser)]))!);
+          break;
         case 'photos':
           result.photos.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [const FullType(Photo)]))! as BuiltList<Object?>);
+          break;
+        case 'comments':
+          result.comments.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [const FullType(Comment)]))! as BuiltList<Object?>);
           break;
         case 'isLoading':
           result.isLoading = serializers.deserialize(value, specifiedType: const FullType(bool)) as bool;
@@ -76,7 +90,7 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.page = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
           break;
         case 'selectedPhoto':
-          result.selectedPhoto = serializers.deserialize(value, specifiedType: const FullType(int)) as int?;
+          result.selectedPhoto = serializers.deserialize(value, specifiedType: const FullType(String)) as String?;
           break;
         case 'query':
           result.query = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
@@ -355,11 +369,73 @@ class _$AppUserSerializer implements StructuredSerializer<AppUser> {
   }
 }
 
+class _$CommentSerializer implements StructuredSerializer<Comment> {
+  @override
+  final Iterable<Type> types = const [Comment, _$Comment];
+  @override
+  final String wireName = 'Comment';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Comment object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'uid',
+      serializers.serialize(object.uid, specifiedType: const FullType(String)),
+      'photoId',
+      serializers.serialize(object.photoId, specifiedType: const FullType(String)),
+      'text',
+      serializers.serialize(object.text, specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt, specifiedType: const FullType(DateTime)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Comment deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new CommentBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'uid':
+          result.uid = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'photoId':
+          result.photoId = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'text':
+          result.text = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value, specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$AppState extends AppState {
   @override
   final AppUser? user;
   @override
+  final BuiltMap<String, AppUser> users;
+  @override
   final BuiltList<Photo> photos;
+  @override
+  final BuiltList<Comment> comments;
   @override
   final bool isLoading;
   @override
@@ -367,7 +443,7 @@ class _$AppState extends AppState {
   @override
   final int page;
   @override
-  final int? selectedPhoto;
+  final String? selectedPhoto;
   @override
   final String query;
 
@@ -375,14 +451,18 @@ class _$AppState extends AppState {
 
   _$AppState._(
       {this.user,
+      required this.users,
       required this.photos,
+      required this.comments,
       required this.isLoading,
       this.error,
       required this.page,
       this.selectedPhoto,
       required this.query})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(users, 'AppState', 'users');
     BuiltValueNullFieldError.checkNotNull(photos, 'AppState', 'photos');
+    BuiltValueNullFieldError.checkNotNull(comments, 'AppState', 'comments');
     BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page');
     BuiltValueNullFieldError.checkNotNull(query, 'AppState', 'query');
@@ -399,7 +479,9 @@ class _$AppState extends AppState {
     if (identical(other, this)) return true;
     return other is AppState &&
         user == other.user &&
+        users == other.users &&
         photos == other.photos &&
+        comments == other.comments &&
         isLoading == other.isLoading &&
         error == other.error &&
         page == other.page &&
@@ -411,7 +493,11 @@ class _$AppState extends AppState {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc($jc($jc(0, user.hashCode), photos.hashCode), isLoading.hashCode), error.hashCode),
+            $jc(
+                $jc(
+                    $jc($jc($jc($jc($jc(0, user.hashCode), users.hashCode), photos.hashCode), comments.hashCode),
+                        isLoading.hashCode),
+                    error.hashCode),
                 page.hashCode),
             selectedPhoto.hashCode),
         query.hashCode));
@@ -421,7 +507,9 @@ class _$AppState extends AppState {
   String toString() {
     return (newBuiltValueToStringHelper('AppState')
           ..add('user', user)
+          ..add('users', users)
           ..add('photos', photos)
+          ..add('comments', comments)
           ..add('isLoading', isLoading)
           ..add('error', error)
           ..add('page', page)
@@ -438,9 +526,17 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   AppUserBuilder get user => _$this._user ??= new AppUserBuilder();
   set user(AppUserBuilder? user) => _$this._user = user;
 
+  MapBuilder<String, AppUser>? _users;
+  MapBuilder<String, AppUser> get users => _$this._users ??= new MapBuilder<String, AppUser>();
+  set users(MapBuilder<String, AppUser>? users) => _$this._users = users;
+
   ListBuilder<Photo>? _photos;
   ListBuilder<Photo> get photos => _$this._photos ??= new ListBuilder<Photo>();
   set photos(ListBuilder<Photo>? photos) => _$this._photos = photos;
+
+  ListBuilder<Comment>? _comments;
+  ListBuilder<Comment> get comments => _$this._comments ??= new ListBuilder<Comment>();
+  set comments(ListBuilder<Comment>? comments) => _$this._comments = comments;
 
   bool? _isLoading;
   bool? get isLoading => _$this._isLoading;
@@ -454,9 +550,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get page => _$this._page;
   set page(int? page) => _$this._page = page;
 
-  int? _selectedPhoto;
-  int? get selectedPhoto => _$this._selectedPhoto;
-  set selectedPhoto(int? selectedPhoto) => _$this._selectedPhoto = selectedPhoto;
+  String? _selectedPhoto;
+  String? get selectedPhoto => _$this._selectedPhoto;
+  set selectedPhoto(String? selectedPhoto) => _$this._selectedPhoto = selectedPhoto;
 
   String? _query;
   String? get query => _$this._query;
@@ -468,7 +564,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     final $v = _$v;
     if ($v != null) {
       _user = $v.user?.toBuilder();
+      _users = $v.users.toBuilder();
       _photos = $v.photos.toBuilder();
+      _comments = $v.comments.toBuilder();
       _isLoading = $v.isLoading;
       _error = $v.error;
       _page = $v.page;
@@ -497,7 +595,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _$result = _$v ??
           new _$AppState._(
               user: _user?.build(),
+              users: users.build(),
               photos: photos.build(),
+              comments: comments.build(),
               isLoading: BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading'),
               error: error,
               page: BuiltValueNullFieldError.checkNotNull(page, 'AppState', 'page'),
@@ -508,8 +608,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       try {
         _$failedField = 'user';
         _user?.build();
+        _$failedField = 'users';
+        users.build();
         _$failedField = 'photos';
         photos.build();
+        _$failedField = 'comments';
+        comments.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError('AppState', _$failedField, e.toString());
       }
@@ -1075,6 +1179,127 @@ class AppUserBuilder implements Builder<AppUser, AppUserBuilder> {
             username: BuiltValueNullFieldError.checkNotNull(username, 'AppUser', 'username'),
             email: BuiltValueNullFieldError.checkNotNull(email, 'AppUser', 'email'),
             photoUrl: photoUrl);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Comment extends Comment {
+  @override
+  final String id;
+  @override
+  final String uid;
+  @override
+  final String photoId;
+  @override
+  final String text;
+  @override
+  final DateTime createdAt;
+
+  factory _$Comment([void Function(CommentBuilder)? updates]) => (new CommentBuilder()..update(updates)).build();
+
+  _$Comment._({required this.id, required this.uid, required this.photoId, required this.text, required this.createdAt})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'Comment', 'id');
+    BuiltValueNullFieldError.checkNotNull(uid, 'Comment', 'uid');
+    BuiltValueNullFieldError.checkNotNull(photoId, 'Comment', 'photoId');
+    BuiltValueNullFieldError.checkNotNull(text, 'Comment', 'text');
+    BuiltValueNullFieldError.checkNotNull(createdAt, 'Comment', 'createdAt');
+  }
+
+  @override
+  Comment rebuild(void Function(CommentBuilder) updates) => (toBuilder()..update(updates)).build();
+
+  @override
+  CommentBuilder toBuilder() => new CommentBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Comment &&
+        id == other.id &&
+        uid == other.uid &&
+        photoId == other.photoId &&
+        text == other.text &&
+        createdAt == other.createdAt;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc($jc($jc(0, id.hashCode), uid.hashCode), photoId.hashCode), text.hashCode), createdAt.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Comment')
+          ..add('id', id)
+          ..add('uid', uid)
+          ..add('photoId', photoId)
+          ..add('text', text)
+          ..add('createdAt', createdAt))
+        .toString();
+  }
+}
+
+class CommentBuilder implements Builder<Comment, CommentBuilder> {
+  _$Comment? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
+
+  String? _photoId;
+  String? get photoId => _$this._photoId;
+  set photoId(String? photoId) => _$this._photoId = photoId;
+
+  String? _text;
+  String? get text => _$this._text;
+  set text(String? text) => _$this._text = text;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  CommentBuilder();
+
+  CommentBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _uid = $v.uid;
+      _photoId = $v.photoId;
+      _text = $v.text;
+      _createdAt = $v.createdAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Comment other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Comment;
+  }
+
+  @override
+  void update(void Function(CommentBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Comment build() {
+    final _$result = _$v ??
+        new _$Comment._(
+            id: BuiltValueNullFieldError.checkNotNull(id, 'Comment', 'id'),
+            uid: BuiltValueNullFieldError.checkNotNull(uid, 'Comment', 'uid'),
+            photoId: BuiltValueNullFieldError.checkNotNull(photoId, 'Comment', 'photoId'),
+            text: BuiltValueNullFieldError.checkNotNull(text, 'Comment', 'text'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(createdAt, 'Comment', 'createdAt'));
     replace(_$result);
     return _$result;
   }

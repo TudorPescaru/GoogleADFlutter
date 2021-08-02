@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:photo_finder/src/actions/index.dart';
 import 'package:photo_finder/src/container/user_container.dart';
 import 'package:photo_finder/src/models/index.dart';
 
@@ -33,8 +31,8 @@ class UserAvatar extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () {
-              StoreProvider.of<AppState>(context).dispatch(const SignOut());
+            onTap: () async {
+              Navigator.pushNamed(context, '/profile');
             },
             child: CircleAvatar(
               child: Text(
@@ -44,6 +42,7 @@ class UserAvatar extends StatelessWidget {
                 ),
               ),
               backgroundColor: Colors.black,
+              foregroundImage: user.photoUrl != null ? NetworkImage(user.photoUrl!) : null,
             ),
           ),
         );

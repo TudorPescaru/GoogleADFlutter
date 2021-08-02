@@ -152,7 +152,8 @@ class _ContentPageState extends State<ContentPage> {
                               ),
                               onTap: () {
                                 final Store<AppState> store = StoreProvider.of<AppState>(context);
-                                store.dispatch(SetSelectedPhoto(index));
+                                store.dispatch(SetSelectedPhoto(photo.id));
+                                store.dispatch(const GetComments());
                                 Navigator.pushNamed(context, '/photo');
                               },
                             );
@@ -165,12 +166,15 @@ class _ContentPageState extends State<ContentPage> {
               }
 
               return Center(
-                child: Text(
-                  error.toString(),
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    error.toString(),
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               );

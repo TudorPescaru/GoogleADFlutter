@@ -418,7 +418,7 @@ abstract class GetPhotosError implements GetPhotos, ErrorAction {
 class _$SetSelectedPhotoTearOff {
   const _$SetSelectedPhotoTearOff();
 
-  SetSelectedPhoto$ call(int photoId) {
+  SetSelectedPhoto$ call(String photoId) {
     return SetSelectedPhoto$(
       photoId,
     );
@@ -430,7 +430,7 @@ const $SetSelectedPhoto = _$SetSelectedPhotoTearOff();
 
 /// @nodoc
 mixin _$SetSelectedPhoto {
-  int get photoId => throw _privateConstructorUsedError;
+  String get photoId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SetSelectedPhotoCopyWith<SetSelectedPhoto> get copyWith => throw _privateConstructorUsedError;
@@ -440,7 +440,7 @@ mixin _$SetSelectedPhoto {
 abstract class $SetSelectedPhotoCopyWith<$Res> {
   factory $SetSelectedPhotoCopyWith(SetSelectedPhoto value, $Res Function(SetSelectedPhoto) then) =
       _$SetSelectedPhotoCopyWithImpl<$Res>;
-  $Res call({int photoId});
+  $Res call({String photoId});
 }
 
 /// @nodoc
@@ -459,7 +459,7 @@ class _$SetSelectedPhotoCopyWithImpl<$Res> implements $SetSelectedPhotoCopyWith<
       photoId: photoId == freezed
           ? _value.photoId
           : photoId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -469,7 +469,7 @@ abstract class $SetSelectedPhoto$CopyWith<$Res> implements $SetSelectedPhotoCopy
   factory $SetSelectedPhoto$CopyWith(SetSelectedPhoto$ value, $Res Function(SetSelectedPhoto$) then) =
       _$SetSelectedPhoto$CopyWithImpl<$Res>;
   @override
-  $Res call({int photoId});
+  $Res call({String photoId});
 }
 
 /// @nodoc
@@ -489,7 +489,7 @@ class _$SetSelectedPhoto$CopyWithImpl<$Res> extends _$SetSelectedPhotoCopyWithIm
       photoId == freezed
           ? _value.photoId
           : photoId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -500,7 +500,7 @@ class _$SetSelectedPhoto$ implements SetSelectedPhoto$ {
   const _$SetSelectedPhoto$(this.photoId);
 
   @override
-  final int photoId;
+  final String photoId;
 
   @override
   String toString() {
@@ -524,10 +524,10 @@ class _$SetSelectedPhoto$ implements SetSelectedPhoto$ {
 }
 
 abstract class SetSelectedPhoto$ implements SetSelectedPhoto {
-  const factory SetSelectedPhoto$(int photoId) = _$SetSelectedPhoto$;
+  const factory SetSelectedPhoto$(String photoId) = _$SetSelectedPhoto$;
 
   @override
-  int get photoId => throw _privateConstructorUsedError;
+  String get photoId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SetSelectedPhoto$CopyWith<SetSelectedPhoto$> get copyWith => throw _privateConstructorUsedError;
@@ -1873,4 +1873,1671 @@ abstract class SignOutError implements SignOut, ErrorAction {
   StackTrace get stackTrace => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SignOutErrorCopyWith<SignOutError> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$UpdateProfilePhotoTearOff {
+  const _$UpdateProfilePhotoTearOff();
+
+  UpdateProfilePhotoStart call(String path) {
+    return UpdateProfilePhotoStart(
+      path,
+    );
+  }
+
+  UpdateProfilePhotoSuccessful successful(String photoUrl) {
+    return UpdateProfilePhotoSuccessful(
+      photoUrl,
+    );
+  }
+
+  UpdateProfilePhotoError error(Object error, StackTrace stackTrace) {
+    return UpdateProfilePhotoError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $UpdateProfilePhoto = _$UpdateProfilePhotoTearOff();
+
+/// @nodoc
+mixin _$UpdateProfilePhoto {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String path) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String path)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value) $default, {
+    required TResult Function(UpdateProfilePhotoSuccessful value) successful,
+    required TResult Function(UpdateProfilePhotoError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value)? $default, {
+    TResult Function(UpdateProfilePhotoSuccessful value)? successful,
+    TResult Function(UpdateProfilePhotoError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateProfilePhotoCopyWith<$Res> {
+  factory $UpdateProfilePhotoCopyWith(UpdateProfilePhoto value, $Res Function(UpdateProfilePhoto) then) =
+      _$UpdateProfilePhotoCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UpdateProfilePhotoCopyWithImpl<$Res> implements $UpdateProfilePhotoCopyWith<$Res> {
+  _$UpdateProfilePhotoCopyWithImpl(this._value, this._then);
+
+  final UpdateProfilePhoto _value;
+  // ignore: unused_field
+  final $Res Function(UpdateProfilePhoto) _then;
+}
+
+/// @nodoc
+abstract class $UpdateProfilePhotoStartCopyWith<$Res> {
+  factory $UpdateProfilePhotoStartCopyWith(UpdateProfilePhotoStart value, $Res Function(UpdateProfilePhotoStart) then) =
+      _$UpdateProfilePhotoStartCopyWithImpl<$Res>;
+  $Res call({String path});
+}
+
+/// @nodoc
+class _$UpdateProfilePhotoStartCopyWithImpl<$Res> extends _$UpdateProfilePhotoCopyWithImpl<$Res>
+    implements $UpdateProfilePhotoStartCopyWith<$Res> {
+  _$UpdateProfilePhotoStartCopyWithImpl(UpdateProfilePhotoStart _value, $Res Function(UpdateProfilePhotoStart) _then)
+      : super(_value, (v) => _then(v as UpdateProfilePhotoStart));
+
+  @override
+  UpdateProfilePhotoStart get _value => super._value as UpdateProfilePhotoStart;
+
+  @override
+  $Res call({
+    Object? path = freezed,
+  }) {
+    return _then(UpdateProfilePhotoStart(
+      path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateProfilePhotoStart implements UpdateProfilePhotoStart {
+  const _$UpdateProfilePhotoStart(this.path);
+
+  @override
+  final String path;
+
+  @override
+  String toString() {
+    return 'UpdateProfilePhoto(path: $path)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateProfilePhotoStart &&
+            (identical(other.path, path) || const DeepCollectionEquality().equals(other.path, path)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(path);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateProfilePhotoStartCopyWith<UpdateProfilePhotoStart> get copyWith =>
+      _$UpdateProfilePhotoStartCopyWithImpl<UpdateProfilePhotoStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String path) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String path)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(path);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value) $default, {
+    required TResult Function(UpdateProfilePhotoSuccessful value) successful,
+    required TResult Function(UpdateProfilePhotoError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value)? $default, {
+    TResult Function(UpdateProfilePhotoSuccessful value)? successful,
+    TResult Function(UpdateProfilePhotoError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateProfilePhotoStart implements UpdateProfilePhoto {
+  const factory UpdateProfilePhotoStart(String path) = _$UpdateProfilePhotoStart;
+
+  String get path => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateProfilePhotoStartCopyWith<UpdateProfilePhotoStart> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateProfilePhotoSuccessfulCopyWith<$Res> {
+  factory $UpdateProfilePhotoSuccessfulCopyWith(
+          UpdateProfilePhotoSuccessful value, $Res Function(UpdateProfilePhotoSuccessful) then) =
+      _$UpdateProfilePhotoSuccessfulCopyWithImpl<$Res>;
+  $Res call({String photoUrl});
+}
+
+/// @nodoc
+class _$UpdateProfilePhotoSuccessfulCopyWithImpl<$Res> extends _$UpdateProfilePhotoCopyWithImpl<$Res>
+    implements $UpdateProfilePhotoSuccessfulCopyWith<$Res> {
+  _$UpdateProfilePhotoSuccessfulCopyWithImpl(
+      UpdateProfilePhotoSuccessful _value, $Res Function(UpdateProfilePhotoSuccessful) _then)
+      : super(_value, (v) => _then(v as UpdateProfilePhotoSuccessful));
+
+  @override
+  UpdateProfilePhotoSuccessful get _value => super._value as UpdateProfilePhotoSuccessful;
+
+  @override
+  $Res call({
+    Object? photoUrl = freezed,
+  }) {
+    return _then(UpdateProfilePhotoSuccessful(
+      photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateProfilePhotoSuccessful implements UpdateProfilePhotoSuccessful {
+  const _$UpdateProfilePhotoSuccessful(this.photoUrl);
+
+  @override
+  final String photoUrl;
+
+  @override
+  String toString() {
+    return 'UpdateProfilePhoto.successful(photoUrl: $photoUrl)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateProfilePhotoSuccessful &&
+            (identical(other.photoUrl, photoUrl) || const DeepCollectionEquality().equals(other.photoUrl, photoUrl)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(photoUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateProfilePhotoSuccessfulCopyWith<UpdateProfilePhotoSuccessful> get copyWith =>
+      _$UpdateProfilePhotoSuccessfulCopyWithImpl<UpdateProfilePhotoSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String path) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(photoUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String path)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(photoUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value) $default, {
+    required TResult Function(UpdateProfilePhotoSuccessful value) successful,
+    required TResult Function(UpdateProfilePhotoError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value)? $default, {
+    TResult Function(UpdateProfilePhotoSuccessful value)? successful,
+    TResult Function(UpdateProfilePhotoError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateProfilePhotoSuccessful implements UpdateProfilePhoto {
+  const factory UpdateProfilePhotoSuccessful(String photoUrl) = _$UpdateProfilePhotoSuccessful;
+
+  String get photoUrl => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateProfilePhotoSuccessfulCopyWith<UpdateProfilePhotoSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateProfilePhotoErrorCopyWith<$Res> {
+  factory $UpdateProfilePhotoErrorCopyWith(UpdateProfilePhotoError value, $Res Function(UpdateProfilePhotoError) then) =
+      _$UpdateProfilePhotoErrorCopyWithImpl<$Res>;
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class _$UpdateProfilePhotoErrorCopyWithImpl<$Res> extends _$UpdateProfilePhotoCopyWithImpl<$Res>
+    implements $UpdateProfilePhotoErrorCopyWith<$Res> {
+  _$UpdateProfilePhotoErrorCopyWithImpl(UpdateProfilePhotoError _value, $Res Function(UpdateProfilePhotoError) _then)
+      : super(_value, (v) => _then(v as UpdateProfilePhotoError));
+
+  @override
+  UpdateProfilePhotoError get _value => super._value as UpdateProfilePhotoError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+    Object? stackTrace = freezed,
+  }) {
+    return _then(UpdateProfilePhotoError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+      stackTrace == freezed
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+@Implements(ErrorAction)
+class _$UpdateProfilePhotoError implements UpdateProfilePhotoError {
+  const _$UpdateProfilePhotoError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'UpdateProfilePhoto.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateProfilePhotoError &&
+            (identical(other.error, error) || const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.stackTrace, stackTrace) ||
+                const DeepCollectionEquality().equals(other.stackTrace, stackTrace)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateProfilePhotoErrorCopyWith<UpdateProfilePhotoError> get copyWith =>
+      _$UpdateProfilePhotoErrorCopyWithImpl<UpdateProfilePhotoError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String path) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String path)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value) $default, {
+    required TResult Function(UpdateProfilePhotoSuccessful value) successful,
+    required TResult Function(UpdateProfilePhotoError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateProfilePhotoStart value)? $default, {
+    TResult Function(UpdateProfilePhotoSuccessful value)? successful,
+    TResult Function(UpdateProfilePhotoError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateProfilePhotoError implements UpdateProfilePhoto, ErrorAction {
+  const factory UpdateProfilePhotoError(Object error, StackTrace stackTrace) = _$UpdateProfilePhotoError;
+
+  Object get error => throw _privateConstructorUsedError;
+  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateProfilePhotoErrorCopyWith<UpdateProfilePhotoError> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$CreateCommentTearOff {
+  const _$CreateCommentTearOff();
+
+  CreateCommentStart call(String text) {
+    return CreateCommentStart(
+      text,
+    );
+  }
+
+  CreateCommentSuccessful successful() {
+    return const CreateCommentSuccessful();
+  }
+
+  CreateCommentError error(Object error, StackTrace stackTrace) {
+    return CreateCommentError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $CreateComment = _$CreateCommentTearOff();
+
+/// @nodoc
+mixin _$CreateComment {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String text) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String text)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CreateCommentStart value) $default, {
+    required TResult Function(CreateCommentSuccessful value) successful,
+    required TResult Function(CreateCommentError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CreateCommentStart value)? $default, {
+    TResult Function(CreateCommentSuccessful value)? successful,
+    TResult Function(CreateCommentError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateCommentCopyWith<$Res> {
+  factory $CreateCommentCopyWith(CreateComment value, $Res Function(CreateComment) then) =
+      _$CreateCommentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateCommentCopyWithImpl<$Res> implements $CreateCommentCopyWith<$Res> {
+  _$CreateCommentCopyWithImpl(this._value, this._then);
+
+  final CreateComment _value;
+  // ignore: unused_field
+  final $Res Function(CreateComment) _then;
+}
+
+/// @nodoc
+abstract class $CreateCommentStartCopyWith<$Res> {
+  factory $CreateCommentStartCopyWith(CreateCommentStart value, $Res Function(CreateCommentStart) then) =
+      _$CreateCommentStartCopyWithImpl<$Res>;
+  $Res call({String text});
+}
+
+/// @nodoc
+class _$CreateCommentStartCopyWithImpl<$Res> extends _$CreateCommentCopyWithImpl<$Res>
+    implements $CreateCommentStartCopyWith<$Res> {
+  _$CreateCommentStartCopyWithImpl(CreateCommentStart _value, $Res Function(CreateCommentStart) _then)
+      : super(_value, (v) => _then(v as CreateCommentStart));
+
+  @override
+  CreateCommentStart get _value => super._value as CreateCommentStart;
+
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(CreateCommentStart(
+      text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateCommentStart implements CreateCommentStart {
+  const _$CreateCommentStart(this.text);
+
+  @override
+  final String text;
+
+  @override
+  String toString() {
+    return 'CreateComment(text: $text)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CreateCommentStart &&
+            (identical(other.text, text) || const DeepCollectionEquality().equals(other.text, text)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(text);
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateCommentStartCopyWith<CreateCommentStart> get copyWith =>
+      _$CreateCommentStartCopyWithImpl<CreateCommentStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String text) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String text)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CreateCommentStart value) $default, {
+    required TResult Function(CreateCommentSuccessful value) successful,
+    required TResult Function(CreateCommentError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CreateCommentStart value)? $default, {
+    TResult Function(CreateCommentSuccessful value)? successful,
+    TResult Function(CreateCommentError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateCommentStart implements CreateComment {
+  const factory CreateCommentStart(String text) = _$CreateCommentStart;
+
+  String get text => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateCommentStartCopyWith<CreateCommentStart> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateCommentSuccessfulCopyWith<$Res> {
+  factory $CreateCommentSuccessfulCopyWith(CreateCommentSuccessful value, $Res Function(CreateCommentSuccessful) then) =
+      _$CreateCommentSuccessfulCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateCommentSuccessfulCopyWithImpl<$Res> extends _$CreateCommentCopyWithImpl<$Res>
+    implements $CreateCommentSuccessfulCopyWith<$Res> {
+  _$CreateCommentSuccessfulCopyWithImpl(CreateCommentSuccessful _value, $Res Function(CreateCommentSuccessful) _then)
+      : super(_value, (v) => _then(v as CreateCommentSuccessful));
+
+  @override
+  CreateCommentSuccessful get _value => super._value as CreateCommentSuccessful;
+}
+
+/// @nodoc
+
+class _$CreateCommentSuccessful implements CreateCommentSuccessful {
+  const _$CreateCommentSuccessful();
+
+  @override
+  String toString() {
+    return 'CreateComment.successful()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is CreateCommentSuccessful);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String text) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String text)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CreateCommentStart value) $default, {
+    required TResult Function(CreateCommentSuccessful value) successful,
+    required TResult Function(CreateCommentError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CreateCommentStart value)? $default, {
+    TResult Function(CreateCommentSuccessful value)? successful,
+    TResult Function(CreateCommentError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateCommentSuccessful implements CreateComment {
+  const factory CreateCommentSuccessful() = _$CreateCommentSuccessful;
+}
+
+/// @nodoc
+abstract class $CreateCommentErrorCopyWith<$Res> {
+  factory $CreateCommentErrorCopyWith(CreateCommentError value, $Res Function(CreateCommentError) then) =
+      _$CreateCommentErrorCopyWithImpl<$Res>;
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class _$CreateCommentErrorCopyWithImpl<$Res> extends _$CreateCommentCopyWithImpl<$Res>
+    implements $CreateCommentErrorCopyWith<$Res> {
+  _$CreateCommentErrorCopyWithImpl(CreateCommentError _value, $Res Function(CreateCommentError) _then)
+      : super(_value, (v) => _then(v as CreateCommentError));
+
+  @override
+  CreateCommentError get _value => super._value as CreateCommentError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+    Object? stackTrace = freezed,
+  }) {
+    return _then(CreateCommentError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+      stackTrace == freezed
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+@Implements(ErrorAction)
+class _$CreateCommentError implements CreateCommentError {
+  const _$CreateCommentError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'CreateComment.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CreateCommentError &&
+            (identical(other.error, error) || const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.stackTrace, stackTrace) ||
+                const DeepCollectionEquality().equals(other.stackTrace, stackTrace)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateCommentErrorCopyWith<CreateCommentError> get copyWith =>
+      _$CreateCommentErrorCopyWithImpl<CreateCommentError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String text) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String text)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(CreateCommentStart value) $default, {
+    required TResult Function(CreateCommentSuccessful value) successful,
+    required TResult Function(CreateCommentError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(CreateCommentStart value)? $default, {
+    TResult Function(CreateCommentSuccessful value)? successful,
+    TResult Function(CreateCommentError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateCommentError implements CreateComment, ErrorAction {
+  const factory CreateCommentError(Object error, StackTrace stackTrace) = _$CreateCommentError;
+
+  Object get error => throw _privateConstructorUsedError;
+  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateCommentErrorCopyWith<CreateCommentError> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GetCommentsTearOff {
+  const _$GetCommentsTearOff();
+
+  GetCommentsStart call() {
+    return const GetCommentsStart();
+  }
+
+  GetCommentsSuccessful successful(List<Comment> comments) {
+    return GetCommentsSuccessful(
+      comments,
+    );
+  }
+
+  GetCommentsError error(Object error, StackTrace stackTrace) {
+    return GetCommentsError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $GetComments = _$GetCommentsTearOff();
+
+/// @nodoc
+mixin _$GetComments {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Comment> comments) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Comment> comments)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCommentsStart value) $default, {
+    required TResult Function(GetCommentsSuccessful value) successful,
+    required TResult Function(GetCommentsError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCommentsStart value)? $default, {
+    TResult Function(GetCommentsSuccessful value)? successful,
+    TResult Function(GetCommentsError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetCommentsCopyWith<$Res> {
+  factory $GetCommentsCopyWith(GetComments value, $Res Function(GetComments) then) = _$GetCommentsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetCommentsCopyWithImpl<$Res> implements $GetCommentsCopyWith<$Res> {
+  _$GetCommentsCopyWithImpl(this._value, this._then);
+
+  final GetComments _value;
+  // ignore: unused_field
+  final $Res Function(GetComments) _then;
+}
+
+/// @nodoc
+abstract class $GetCommentsStartCopyWith<$Res> {
+  factory $GetCommentsStartCopyWith(GetCommentsStart value, $Res Function(GetCommentsStart) then) =
+      _$GetCommentsStartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetCommentsStartCopyWithImpl<$Res> extends _$GetCommentsCopyWithImpl<$Res>
+    implements $GetCommentsStartCopyWith<$Res> {
+  _$GetCommentsStartCopyWithImpl(GetCommentsStart _value, $Res Function(GetCommentsStart) _then)
+      : super(_value, (v) => _then(v as GetCommentsStart));
+
+  @override
+  GetCommentsStart get _value => super._value as GetCommentsStart;
+}
+
+/// @nodoc
+
+class _$GetCommentsStart implements GetCommentsStart {
+  const _$GetCommentsStart();
+
+  @override
+  String toString() {
+    return 'GetComments()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is GetCommentsStart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Comment> comments) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Comment> comments)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCommentsStart value) $default, {
+    required TResult Function(GetCommentsSuccessful value) successful,
+    required TResult Function(GetCommentsError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCommentsStart value)? $default, {
+    TResult Function(GetCommentsSuccessful value)? successful,
+    TResult Function(GetCommentsError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCommentsStart implements GetComments {
+  const factory GetCommentsStart() = _$GetCommentsStart;
+}
+
+/// @nodoc
+abstract class $GetCommentsSuccessfulCopyWith<$Res> {
+  factory $GetCommentsSuccessfulCopyWith(GetCommentsSuccessful value, $Res Function(GetCommentsSuccessful) then) =
+      _$GetCommentsSuccessfulCopyWithImpl<$Res>;
+  $Res call({List<Comment> comments});
+}
+
+/// @nodoc
+class _$GetCommentsSuccessfulCopyWithImpl<$Res> extends _$GetCommentsCopyWithImpl<$Res>
+    implements $GetCommentsSuccessfulCopyWith<$Res> {
+  _$GetCommentsSuccessfulCopyWithImpl(GetCommentsSuccessful _value, $Res Function(GetCommentsSuccessful) _then)
+      : super(_value, (v) => _then(v as GetCommentsSuccessful));
+
+  @override
+  GetCommentsSuccessful get _value => super._value as GetCommentsSuccessful;
+
+  @override
+  $Res call({
+    Object? comments = freezed,
+  }) {
+    return _then(GetCommentsSuccessful(
+      comments == freezed
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCommentsSuccessful implements GetCommentsSuccessful {
+  const _$GetCommentsSuccessful(this.comments);
+
+  @override
+  final List<Comment> comments;
+
+  @override
+  String toString() {
+    return 'GetComments.successful(comments: $comments)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetCommentsSuccessful &&
+            (identical(other.comments, comments) || const DeepCollectionEquality().equals(other.comments, comments)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(comments);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetCommentsSuccessfulCopyWith<GetCommentsSuccessful> get copyWith =>
+      _$GetCommentsSuccessfulCopyWithImpl<GetCommentsSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Comment> comments) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(comments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Comment> comments)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(comments);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCommentsStart value) $default, {
+    required TResult Function(GetCommentsSuccessful value) successful,
+    required TResult Function(GetCommentsError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCommentsStart value)? $default, {
+    TResult Function(GetCommentsSuccessful value)? successful,
+    TResult Function(GetCommentsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCommentsSuccessful implements GetComments {
+  const factory GetCommentsSuccessful(List<Comment> comments) = _$GetCommentsSuccessful;
+
+  List<Comment> get comments => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetCommentsSuccessfulCopyWith<GetCommentsSuccessful> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetCommentsErrorCopyWith<$Res> {
+  factory $GetCommentsErrorCopyWith(GetCommentsError value, $Res Function(GetCommentsError) then) =
+      _$GetCommentsErrorCopyWithImpl<$Res>;
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class _$GetCommentsErrorCopyWithImpl<$Res> extends _$GetCommentsCopyWithImpl<$Res>
+    implements $GetCommentsErrorCopyWith<$Res> {
+  _$GetCommentsErrorCopyWithImpl(GetCommentsError _value, $Res Function(GetCommentsError) _then)
+      : super(_value, (v) => _then(v as GetCommentsError));
+
+  @override
+  GetCommentsError get _value => super._value as GetCommentsError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+    Object? stackTrace = freezed,
+  }) {
+    return _then(GetCommentsError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+      stackTrace == freezed
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+@Implements(ErrorAction)
+class _$GetCommentsError implements GetCommentsError {
+  const _$GetCommentsError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetComments.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetCommentsError &&
+            (identical(other.error, error) || const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.stackTrace, stackTrace) ||
+                const DeepCollectionEquality().equals(other.stackTrace, stackTrace)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetCommentsErrorCopyWith<GetCommentsError> get copyWith =>
+      _$GetCommentsErrorCopyWithImpl<GetCommentsError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Comment> comments) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Comment> comments)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCommentsStart value) $default, {
+    required TResult Function(GetCommentsSuccessful value) successful,
+    required TResult Function(GetCommentsError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCommentsStart value)? $default, {
+    TResult Function(GetCommentsSuccessful value)? successful,
+    TResult Function(GetCommentsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCommentsError implements GetComments, ErrorAction {
+  const factory GetCommentsError(Object error, StackTrace stackTrace) = _$GetCommentsError;
+
+  Object get error => throw _privateConstructorUsedError;
+  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetCommentsErrorCopyWith<GetCommentsError> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GetUsersTearOff {
+  const _$GetUsersTearOff();
+
+  GetUsersStart call(List<String> uids) {
+    return GetUsersStart(
+      uids,
+    );
+  }
+
+  GetUsersSuccessful successful(List<AppUser> users) {
+    return GetUsersSuccessful(
+      users,
+    );
+  }
+
+  GetUsersError error(Object error, StackTrace stackTrace) {
+    return GetUsersError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $GetUsers = _$GetUsersTearOff();
+
+/// @nodoc
+mixin _$GetUsers {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<String> uids) $default, {
+    required TResult Function(List<AppUser> users) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<String> uids)? $default, {
+    TResult Function(List<AppUser> users)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUsersStart value) $default, {
+    required TResult Function(GetUsersSuccessful value) successful,
+    required TResult Function(GetUsersError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUsersStart value)? $default, {
+    TResult Function(GetUsersSuccessful value)? successful,
+    TResult Function(GetUsersError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetUsersCopyWith<$Res> {
+  factory $GetUsersCopyWith(GetUsers value, $Res Function(GetUsers) then) = _$GetUsersCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetUsersCopyWithImpl<$Res> implements $GetUsersCopyWith<$Res> {
+  _$GetUsersCopyWithImpl(this._value, this._then);
+
+  final GetUsers _value;
+  // ignore: unused_field
+  final $Res Function(GetUsers) _then;
+}
+
+/// @nodoc
+abstract class $GetUsersStartCopyWith<$Res> {
+  factory $GetUsersStartCopyWith(GetUsersStart value, $Res Function(GetUsersStart) then) =
+      _$GetUsersStartCopyWithImpl<$Res>;
+  $Res call({List<String> uids});
+}
+
+/// @nodoc
+class _$GetUsersStartCopyWithImpl<$Res> extends _$GetUsersCopyWithImpl<$Res> implements $GetUsersStartCopyWith<$Res> {
+  _$GetUsersStartCopyWithImpl(GetUsersStart _value, $Res Function(GetUsersStart) _then)
+      : super(_value, (v) => _then(v as GetUsersStart));
+
+  @override
+  GetUsersStart get _value => super._value as GetUsersStart;
+
+  @override
+  $Res call({
+    Object? uids = freezed,
+  }) {
+    return _then(GetUsersStart(
+      uids == freezed
+          ? _value.uids
+          : uids // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUsersStart implements GetUsersStart {
+  const _$GetUsersStart(this.uids);
+
+  @override
+  final List<String> uids;
+
+  @override
+  String toString() {
+    return 'GetUsers(uids: $uids)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetUsersStart &&
+            (identical(other.uids, uids) || const DeepCollectionEquality().equals(other.uids, uids)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(uids);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetUsersStartCopyWith<GetUsersStart> get copyWith => _$GetUsersStartCopyWithImpl<GetUsersStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<String> uids) $default, {
+    required TResult Function(List<AppUser> users) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(uids);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<String> uids)? $default, {
+    TResult Function(List<AppUser> users)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(uids);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUsersStart value) $default, {
+    required TResult Function(GetUsersSuccessful value) successful,
+    required TResult Function(GetUsersError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUsersStart value)? $default, {
+    TResult Function(GetUsersSuccessful value)? successful,
+    TResult Function(GetUsersError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUsersStart implements GetUsers {
+  const factory GetUsersStart(List<String> uids) = _$GetUsersStart;
+
+  List<String> get uids => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetUsersStartCopyWith<GetUsersStart> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetUsersSuccessfulCopyWith<$Res> {
+  factory $GetUsersSuccessfulCopyWith(GetUsersSuccessful value, $Res Function(GetUsersSuccessful) then) =
+      _$GetUsersSuccessfulCopyWithImpl<$Res>;
+  $Res call({List<AppUser> users});
+}
+
+/// @nodoc
+class _$GetUsersSuccessfulCopyWithImpl<$Res> extends _$GetUsersCopyWithImpl<$Res>
+    implements $GetUsersSuccessfulCopyWith<$Res> {
+  _$GetUsersSuccessfulCopyWithImpl(GetUsersSuccessful _value, $Res Function(GetUsersSuccessful) _then)
+      : super(_value, (v) => _then(v as GetUsersSuccessful));
+
+  @override
+  GetUsersSuccessful get _value => super._value as GetUsersSuccessful;
+
+  @override
+  $Res call({
+    Object? users = freezed,
+  }) {
+    return _then(GetUsersSuccessful(
+      users == freezed
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<AppUser>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUsersSuccessful implements GetUsersSuccessful {
+  const _$GetUsersSuccessful(this.users);
+
+  @override
+  final List<AppUser> users;
+
+  @override
+  String toString() {
+    return 'GetUsers.successful(users: $users)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetUsersSuccessful &&
+            (identical(other.users, users) || const DeepCollectionEquality().equals(other.users, users)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(users);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetUsersSuccessfulCopyWith<GetUsersSuccessful> get copyWith =>
+      _$GetUsersSuccessfulCopyWithImpl<GetUsersSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<String> uids) $default, {
+    required TResult Function(List<AppUser> users) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(users);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<String> uids)? $default, {
+    TResult Function(List<AppUser> users)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(users);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUsersStart value) $default, {
+    required TResult Function(GetUsersSuccessful value) successful,
+    required TResult Function(GetUsersError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUsersStart value)? $default, {
+    TResult Function(GetUsersSuccessful value)? successful,
+    TResult Function(GetUsersError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUsersSuccessful implements GetUsers {
+  const factory GetUsersSuccessful(List<AppUser> users) = _$GetUsersSuccessful;
+
+  List<AppUser> get users => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetUsersSuccessfulCopyWith<GetUsersSuccessful> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetUsersErrorCopyWith<$Res> {
+  factory $GetUsersErrorCopyWith(GetUsersError value, $Res Function(GetUsersError) then) =
+      _$GetUsersErrorCopyWithImpl<$Res>;
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class _$GetUsersErrorCopyWithImpl<$Res> extends _$GetUsersCopyWithImpl<$Res> implements $GetUsersErrorCopyWith<$Res> {
+  _$GetUsersErrorCopyWithImpl(GetUsersError _value, $Res Function(GetUsersError) _then)
+      : super(_value, (v) => _then(v as GetUsersError));
+
+  @override
+  GetUsersError get _value => super._value as GetUsersError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+    Object? stackTrace = freezed,
+  }) {
+    return _then(GetUsersError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+      stackTrace == freezed
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+@Implements(ErrorAction)
+class _$GetUsersError implements GetUsersError {
+  const _$GetUsersError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetUsers.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetUsersError &&
+            (identical(other.error, error) || const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.stackTrace, stackTrace) ||
+                const DeepCollectionEquality().equals(other.stackTrace, stackTrace)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetUsersErrorCopyWith<GetUsersError> get copyWith => _$GetUsersErrorCopyWithImpl<GetUsersError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<String> uids) $default, {
+    required TResult Function(List<AppUser> users) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<String> uids)? $default, {
+    TResult Function(List<AppUser> users)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUsersStart value) $default, {
+    required TResult Function(GetUsersSuccessful value) successful,
+    required TResult Function(GetUsersError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUsersStart value)? $default, {
+    TResult Function(GetUsersSuccessful value)? successful,
+    TResult Function(GetUsersError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUsersError implements GetUsers, ErrorAction {
+  const factory GetUsersError(Object error, StackTrace stackTrace) = _$GetUsersError;
+
+  Object get error => throw _privateConstructorUsedError;
+  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetUsersErrorCopyWith<GetUsersError> get copyWith => throw _privateConstructorUsedError;
 }

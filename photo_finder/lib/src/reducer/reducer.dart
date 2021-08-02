@@ -15,11 +15,18 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, SearchPhotos>(_searchPhotos),
   TypedReducer<AppState, RegisterSuccessful>(_registerSuccessful),
   TypedReducer<AppState, SignOutSuccessful>(_signOutSuccessful),
+  TypedReducer<AppState, UpdateProfilePhotoSuccessful>(_updateProfilePhotoSuccessful),
+  TypedReducer<AppState, GetCommentsStart>(_getComments),
+  TypedReducer<AppState, GetCommentsSuccessful>(_getCommentsSuccessful),
+  TypedReducer<AppState, GetCommentsError>(_getCommentsError),
+  TypedReducer<AppState, GetUsersSuccessful>(_getUsersSuccessful),
 ]);
 
 AppState _getPhotos(AppState state, GetPhotosStart action) {
   return state.rebuild((AppStateBuilder b) {
-    b.isLoading = true;
+    b
+      ..error = null
+      ..isLoading = true;
   });
 }
 
@@ -71,5 +78,44 @@ AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action
 AppState _signOutSuccessful(AppState state, SignOutSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.user = null;
+  });
+}
+
+AppState _updateProfilePhotoSuccessful(AppState state, UpdateProfilePhotoSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user.photoUrl = action.photoUrl;
+  });
+}
+
+AppState _getComments(AppState state, GetCommentsStart action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.isLoading = true;
+  });
+}
+
+AppState _getCommentsSuccessful(AppState state, GetCommentsSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.comments
+      ..clear()
+      ..addAll(action.comments);
+    b.isLoading = false;
+  });
+}
+
+AppState _getCommentsError(AppState state, GetCommentsError action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..isLoading = false
+      ..error = action.error.toString();
+  });
+}
+
+AppState _getUsersSuccessful(AppState state, GetUsersSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.users.clear();
+
+    for (final AppUser user in action.users) {
+      b.users[user.uid] = user;
+    }
   });
 }

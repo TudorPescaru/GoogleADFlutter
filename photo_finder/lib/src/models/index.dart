@@ -12,3 +12,4 @@ part 'poster.dart';
 part 'profile_image.dart';
 part 'urls.dart';
 part 'app_user.dart';
+part 'comment.dart';

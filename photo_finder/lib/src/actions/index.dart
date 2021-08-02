@@ -10,6 +10,10 @@ part 'search_photos.dart';
 part 'register.dart';
 part 'initialize_app.dart';
 part 'sign_out.dart';
+part 'update_profile_photo.dart';
+part 'create_comment.dart';
+part 'get_comments.dart';
+part 'get_users.dart';
 
 abstract class AppAction {}
 

@@ -54,9 +54,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _email,
                   decoration: const InputDecoration(
                     labelText: 'Email',
-                    labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -75,9 +80,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _password,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
+                    labelStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                      ),
                     ),
                     suffix: IconButton(
                       onPressed: () {
@@ -134,7 +144,10 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: const Text(
                           'Login',
-                          style: TextStyle(fontSize: 20, color: Colors.black),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
