@@ -3,17 +3,17 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:photo_finder/src/models/index.dart';
 import 'package:redux/redux.dart';
 
-class PhotoContainer extends StatelessWidget {
-  const PhotoContainer({Key? key, required this.builder}) : super(key: key);
+class QueryContainer extends StatelessWidget {
+  const QueryContainer({Key? key, required this.builder}) : super(key: key);
 
-  final ViewModelBuilder<Photo> builder;
+  final ViewModelBuilder<String> builder;
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, Photo>(
+    return StoreConnector<AppState, String>(
       builder: builder,
       converter: (Store<AppState> store) {
-        return store.state.photos[store.state.selectedPhoto!];
+        return store.state.query;
       },
     );
   }
