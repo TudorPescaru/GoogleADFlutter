@@ -61,13 +61,14 @@ class ProfilePage extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 75,
                       child: Text(
-                        user!.username[0].toUpperCase(),
+                        user != null ? user.username[0].toUpperCase() : 'U',
                         style: const TextStyle(
                           color: Colors.white,
+                          fontSize: 64,
                         ),
                       ),
                       backgroundColor: Colors.black,
-                      foregroundImage: user.photoUrl != null ? NetworkImage(user.photoUrl!) : null,
+                      foregroundImage: user != null && user.photoUrl != null ? NetworkImage(user.photoUrl!) : null,
                     ),
                   ),
                 ),

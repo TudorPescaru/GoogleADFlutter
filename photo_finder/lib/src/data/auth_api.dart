@@ -25,6 +25,10 @@ class AuthApi {
         .doc('users/${user.uid}')
         .get();
 
+    if (snapshot.data() == null) {
+      return null;
+    }
+
     return AppUser.fromJson(snapshot.data());
   }
 
@@ -42,17 +46,21 @@ class AuthApi {
       }
     }
 
-    final AppUser user = AppUser((AppUserBuilder b) {
-      b
-        ..uid = result.user!.uid
-        ..username = email.split('@').first
-        ..email = email
-        ..photoUrl = result.user?.photoURL;
-    });
+    AppUser? user = await getCurrentUser();
 
-    await _firestore //
-        .doc('users/${user.uid}')
-        .set(user.json);
+    if (user == null) {
+      user = AppUser((AppUserBuilder b) {
+        b
+          ..uid = result.user!.uid
+          ..username = email.split('@').first
+          ..email = email
+          ..photoUrl = result.user!.photoURL;
+      });
+
+      await _firestore //
+          .doc('users/${user.uid}')
+          .set(user.json);
+    }
 
     return user;
   }

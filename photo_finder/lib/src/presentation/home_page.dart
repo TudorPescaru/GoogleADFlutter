@@ -70,14 +70,17 @@ class _HomePageState extends State<HomePage> {
                       contentPadding: EdgeInsets.all(10.0),
                       hintText: 'What would you like to see?',
                       border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.black,
-                      )),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
                       focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.black,
-                      )),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
+                    cursorColor: Colors.black,
                   ),
                 ),
                 Material(
